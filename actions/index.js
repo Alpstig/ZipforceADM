@@ -1,19 +1,12 @@
-let nextTodoId = 0
-export const addTodo = text => ({
-  type: 'ADD_TODO',
-  id: nextTodoId++,
-  text
-})
-export const setVisibilityFilter = filter => ({
-  type: 'SET_VISIBILITY_FILTER',
-  filter
-})
-export const toggleTodo = id => ({
-  type: 'TOGGLE_TODO',
-  id
-})
-export const VisibilityFilters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_ACTIVE: 'SHOW_ACTIVE'
+import {
+  CONNECT_PENDING, CONNECT_SUCCESS, CONNECT_FAILURE,
+  DISCONNECT_PENDING, DISCONNECT_SUCCESS, DISCONNECT_FAILURE,
+} from '../actionTypes/bluetooth'
+
+export const connectDevice = device => {
+  return { type: CONNECT_SUCCESS, payload: device }
+}
+
+export const disconnect = () => {
+  return { type: DISCONNECT_SUCCESS}
 }

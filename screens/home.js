@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { AnimatedGaugeProgress, GaugeProgress } from 'react-native-simple-gauge'
 import { View, Text, Dimensions, StyleSheet, Image, SafeAreaView } from 'react-native'
 import ProgressBar from '../components/progressBar'
 import moment from 'moment'
+import { decode, encode } from 'base-64';
+
+import {disconnect} from '../actions'
 
 const { width } = Dimensions.get('window');
 const size = width - 100;
@@ -30,7 +34,120 @@ const minuteHandStyles = () => {
   }
 }
 
-export default class HomeScreen extends Component {
+class HomeScreen extends Component {
+  constructor(props) {
+    super(props)
+    this.focusListener = null
+    this._characteristics = null
+    this._RawSubcription = null
+    this.state = {
+      device: false,
+      isScanning: false,
+      isScanned: false,
+      deviceNames: [],
+      deviceList: [],
+      error: false,
+      errorMsg: "",
+      rx: "",
+      data:[],
+      debug: ''
+    }
+  }
+
+  _connectToDevice = (device) => {
+    device
+      .connect()
+      .then((device) => {
+        this.setState({ connected: true });
+        this._device = device;
+        return device.discoverAllServicesAndCharacteristics();
+      })
+      .then((device) => {
+        return device.services();
+      })
+      .then((services) => {
+        for (const service of services) {
+          service.characteristics().then((characteristics) => {
+            this._characteristics = characteristics;
+            this._readAndNotify(service);
+          });
+        }
+      });
+
+    this._subscription = device.onDisconnected((error, device) => {
+      this.props.disconnect();
+      this.props.navigation.navigate('Scan')
+    })
+  }
+
+  _readAndNotify = (service) => {
+    for (const characteristic of this._characteristics) {
+      // if (characteristic.isReadable) this._readCharacteristic(characteristic);
+      if (characteristic.isNotifiable) this._notifyCharacteristc(characteristic);
+    }
+  }
+  _serialParser = (rxData) => {
+    console.log(rxData)
+    // let result = rxData.match(/\#(.*?)\*/gm)
+    // let resultObj = result.reduce((prev, curr)=>{
+    //     curr = curr.replace('*','')
+    //     curr = curr.replace('#','')
+    //     let key = curr.slice(0,1)
+    //     let value = curr.replace(key,'')
+    //     prev.push({[key]: value})
+    //     return prev
+    // },[])
+    // rxData = rxData.slice(rxData.lastIndexOf('#'),10000)
+    // console.log(resultObj)
+    // this.setState({ rx: rxData,  data: resultObj})
+  }
+
+  _readCharacteristic = (characteristic) => {
+    characteristic
+      .read()
+      .then((c) => {
+        // const value = getDecValue(c)
+        console.log(`---------------------------------------------------
+        Characteristic UUID : ${characteristic.uuid}
+        Read Value : ${c}`); // Read Value
+      });
+  }
+
+  _notifyCharacteristc = (characteristic) => {
+    if (characteristic.uuid == '0000ffe1-0000-1000-8000-00805f9b34fb') {
+      console.log('_notifyCharacteristc')
+      if(this._RawSubcription == null){
+        this._RawSubcription = characteristic.monitor((error, c) => {
+          if (error) this.setState({ error: true, errorMsg: error.message })
+          if (c) {
+            this._serialParser(this.state.rx + decode(c.value))
+          }
+        })
+      }
+    }
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.isFocused !== this.props.isFocused) {
+      console.log('CLOSE!!!')
+    }
+  }
+  componentDidMount() {
+    const { navigation } = this.props;
+    this.focusListener = navigation.addListener('didFocus', () => {
+      const { device, isConnected } = this.props;
+      if (isConnected) {
+        this._connectToDevice(device)
+      } else {
+        navigation.navigate('Scan')
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount')
+    this.focusListener.remove();
+  }
+
   static navigationOptions = {
     headerShown: false,
   };
@@ -91,7 +208,7 @@ export default class HomeScreen extends Component {
             />
           </View>
           <View style={styles.row}>
-            <Text style={[styles.tableKey, {paddingRight:10}]}>Battery</Text>
+            <Text style={[styles.tableKey, { paddingRight: 10 }]}>Battery</Text>
             <Text style={[styles.tableValue]}>50%</Text>
           </View>
         </View>
@@ -190,3 +307,15 @@ const styles = StyleSheet.create({
     fontFamily: 'Orbitron-Bold'
   },
 })
+
+const mapStateToProps = state => {
+  const { device, isConnected } = state.bluetooth
+  console.log(state)
+  return { device, isConnected }
+};
+
+const mapDispatchToProps = dispatch => ({
+  disconnect: () => dispatch(disconnect()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

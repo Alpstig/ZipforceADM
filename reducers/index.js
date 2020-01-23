@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
-import todos from './todos'
-import visibilityFilter from './visibilityFilter'
+import bluetooth from './bluetooth'
+
 export default combineReducers({
-  todos,
-  visibilityFilter
+  bluetooth: bluetooth,
 })
