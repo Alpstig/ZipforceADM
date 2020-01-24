@@ -6,7 +6,7 @@ import ProgressBar from '../components/progressBar'
 import moment from 'moment'
 import { decode, encode } from 'base-64';
 
-import {disconnect} from '../actions'
+import { disconnect } from '../actions'
 
 const { width } = Dimensions.get('window');
 const size = width - 100;
@@ -49,7 +49,7 @@ class HomeScreen extends Component {
       error: false,
       errorMsg: "",
       rx: "",
-      data:[],
+      data: [],
       debug: ''
     }
   }
@@ -86,20 +86,35 @@ class HomeScreen extends Component {
       if (characteristic.isNotifiable) this._notifyCharacteristc(characteristic);
     }
   }
+
   _serialParser = (rxData) => {
-    console.log(rxData)
-    // let result = rxData.match(/\#(.*?)\*/gm)
-    // let resultObj = result.reduce((prev, curr)=>{
-    //     curr = curr.replace('*','')
-    //     curr = curr.replace('#','')
-    //     let key = curr.slice(0,1)
-    //     let value = curr.replace(key,'')
-    //     prev.push({[key]: value})
-    //     return prev
-    // },[])
-    // rxData = rxData.slice(rxData.lastIndexOf('#'),10000)
-    // console.log(resultObj)
-    // this.setState({ rx: rxData,  data: resultObj})
+    rxData = rxData.replace(/\r?\n|\r/g, '')
+    let result = rxData.match(/\#(.*?)\*/gm)
+    if (result != null) {
+      let resultObj = result.reduce((prev, curr) => {
+        curr = curr.replace('*', '')
+        curr = curr.replace('#', '')
+        let key = curr.slice(0, 1)
+        let value = curr.replace(key, '')
+        prev.push({ key, value })
+        return prev
+      }, [])
+      rxData = rxData.slice(rxData.lastIndexOf('*') + 1, rxData.lastIndexOf('*') + 200)
+      var newState = [...this.state.data]
+      resultObj.forEach(obj => {
+
+        var exist = this.state.data.findIndex(x => x.key == obj.key)
+
+        if (exist != -1) {
+          newState[exist] = obj
+        } else {
+          newState.push(obj)
+        }
+      });
+
+      this.setState({ rx: rxData, data: newState })
+    }
+    this.setState({ rx: rxData })
   }
 
   _readCharacteristic = (characteristic) => {
@@ -116,7 +131,7 @@ class HomeScreen extends Component {
   _notifyCharacteristc = (characteristic) => {
     if (characteristic.uuid == '0000ffe1-0000-1000-8000-00805f9b34fb') {
       console.log('_notifyCharacteristc')
-      if(this._RawSubcription == null){
+      if (this._RawSubcription == null) {
         this._RawSubcription = characteristic.monitor((error, c) => {
           if (error) this.setState({ error: true, errorMsg: error.message })
           if (c) {
@@ -126,11 +141,13 @@ class HomeScreen extends Component {
       }
     }
   }
+
   componentDidUpdate(prevProps) {
     if (prevProps.isFocused !== this.props.isFocused) {
       console.log('CLOSE!!!')
     }
   }
+
   componentDidMount() {
     const { navigation } = this.props;
     this.focusListener = navigation.addListener('didFocus', () => {
@@ -153,24 +170,30 @@ class HomeScreen extends Component {
   };
 
   render() {
+    const { data } = this.state
+    let speedData = data.find(x => x.key == 'S')
+    let speed = 0
+    if (speedData != null) {
+      speed = parseInt(speedData.value)
+    }
+    console.log(speed)
     return (
       <SafeAreaView>
         <View style={{ alignItems: 'center', paddingBottom: 10 }}>
           <Image source={require('../assets/logo.png')} style={{ width: 265, height: 60 }} />
         </View>
-
         <View style={styles.speedGuade}>
           <GaugeProgress
             size={size}
             width={thik}
-            fill={50}
+            fill={speed*2}
             cropDegree={cropDegree}
             strokeCap='circle'
             tintColor='#FC5185'
             delay={0}
             backgroundColor='#364F6B'>
             <View style={styles.textView}>
-              <Text style={styles.speed}>25</Text>
+              <Text style={styles.speed}>{speed}</Text>
             </View>
             <View style={styles.textView}>
               <Text style={[styles.unit, { marginTop: 150, height: 100 }]}>km/h</Text>
@@ -310,7 +333,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   const { device, isConnected } = state.bluetooth
-  console.log(state)
   return { device, isConnected }
 };
 
