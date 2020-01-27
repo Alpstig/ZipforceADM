@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AnimatedGaugeProgress, GaugeProgress } from 'react-native-simple-gauge'
-import { View, Text, Dimensions, StyleSheet, Image, SafeAreaView } from 'react-native'
+import { View, Text, Dimensions, StyleSheet, Image, SafeAreaView, Button } from 'react-native'
 import ProgressBar from '../components/progressBar'
 import moment from 'moment'
 import { decode, encode } from 'base-64';
@@ -39,7 +39,9 @@ class HomeScreen extends Component {
     super(props)
     this.focusListener = null
     this._characteristics = null
-    this._RawSubcription = null
+    this._readSubcription = null
+    this._writeSubcription = null
+    this._device = null;
     this.state = {
       device: false,
       isScanning: false,
@@ -82,7 +84,7 @@ class HomeScreen extends Component {
 
   _readAndNotify = (service) => {
     for (const characteristic of this._characteristics) {
-      // if (characteristic.isReadable) this._readCharacteristic(characteristic);
+      if (characteristic.isWritableWithoutResponse) this._writeCharacteristc(characteristic);
       if (characteristic.isNotifiable) this._notifyCharacteristc(characteristic);
     }
   }
@@ -111,33 +113,40 @@ class HomeScreen extends Component {
           newState.push(obj)
         }
       });
-
+      console.log(newState)
       this.setState({ rx: rxData, data: newState })
     }
     this.setState({ rx: rxData })
   }
 
-  _readCharacteristic = (characteristic) => {
-    characteristic
-      .read()
-      .then((c) => {
-        // const value = getDecValue(c)
-        console.log(`---------------------------------------------------
-        Characteristic UUID : ${characteristic.uuid}
-        Read Value : ${c}`); // Read Value
-      });
-  }
-
   _notifyCharacteristc = (characteristic) => {
-    if (characteristic.uuid == '0000ffe1-0000-1000-8000-00805f9b34fb') {
+    if (characteristic.uuid.substring(0, 8) == '0000ffe1') {
       console.log('_notifyCharacteristc')
-      if (this._RawSubcription == null) {
-        this._RawSubcription = characteristic.monitor((error, c) => {
+      if (this._readSubcription == null) {
+        this._readSubcription = characteristic.monitor((error, c) => {
           if (error) this.setState({ error: true, errorMsg: error.message })
           if (c) {
             this._serialParser(this.state.rx + decode(c.value))
           }
         })
+      }
+    }
+  }
+
+  _sendToDevice(value){
+    if(this._writeSubcription != null){
+      console.log('Sending to device:', value, encode(value))
+      
+      this._writeSubcription.writeWithoutResponse(encode(value))
+    }
+  }
+
+  _writeCharacteristc = (characteristic) => {
+    if (characteristic.uuid.substring(0, 8) == '0000ffe2') {
+      console.log('_writeCharacteristc')
+      if (this._writeSubcription == null) {
+        this._writeSubcription = characteristic;
+        this._sendToDevice('M')
       }
     }
   }
@@ -176,11 +185,14 @@ class HomeScreen extends Component {
     if (speedData != null) {
       speed = parseInt(speedData.value)
     }
-    console.log(speed)
     return (
       <SafeAreaView>
         <View style={{ alignItems: 'center', paddingBottom: 10 }}>
           <Image source={require('../assets/logo.png')} style={{ width: 265, height: 60 }} />
+          <Button
+          title={'SEND M'}
+          onPress={()=>this._sendToDevice('M')}
+          />
         </View>
         <View style={styles.speedGuade}>
           <GaugeProgress
