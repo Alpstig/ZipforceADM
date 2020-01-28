@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import { StyleSheet, SafeAreaView, Text, View, Image, Picker } from 'react-native'
 import { ListItem } from 'react-native-elements'
 import AuthButtons from '../components/authButtons'
-
+import { sendToDevice } from '../actions'
 import firebase from '../utils/firebase'
 
-export default class SettingScreen extends Component {
+class SettingScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -27,17 +28,13 @@ export default class SettingScreen extends Component {
         disabled: false
       }
     }
-    this.changeSettings = this.changeSettings.bind(this)
   }
   
   componentDidMount() {
+    this.props.sendToDevice('S')
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({ user })
     })
-  }
-
-  changeSettings(target, e) {
-    this.setState({ [target]: { value: e.nativeEvent.value } })
   }
 
   static navigationOptions = {
@@ -45,8 +42,14 @@ export default class SettingScreen extends Component {
   }
 
   render() {
-    const { direction, light, recovery, unit, user } = this.state
-
+    const { user } = this.state
+    const {data} = this.props.bluetooth
+    const unitData = data.find(x => x.key == 'r')
+    let unit = false
+    if (unitData != null) {
+      unit = (unitData.value == '0'?false:true)
+    }
+    
     return (
       <SafeAreaView style={styles.container}>
         <View style={{ alignItems: 'center', paddingBottom: 10 }}>
@@ -66,7 +69,7 @@ export default class SettingScreen extends Component {
           chevron={{ color: '#FC5185' }}
           bottomDivider
         />
-        <ListItem
+        {/* <ListItem
           key={3}
           title={'Reverse Mode'}
           onChange={(e) => this.changeSettings('direction', e)}
@@ -95,14 +98,13 @@ export default class SettingScreen extends Component {
             disabled: recovery.disabled
           }}
           bottomDivider
-        />
+        /> */}
         <ListItem
           key={6}
           title={'Speed unit km/h - mph'}
-          onChange={(e) => this.changeSettings('unit', e)}
+          onChange={(e) => this.props.sendToDevice(`Cr${(e.nativeEvent.value?1:0)}`)}
           switch={{
-            value: unit.value,
-            disabled: unit.disabled
+            value: unit,
           }}
           bottomDivider
         />
@@ -131,3 +133,14 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   }
 })
+const mapStateToProps = state => ({
+  bluetooth: state.bluetooth
+});
+
+const mapDispatchToProps = dispatch => ({
+  serialParser: (data) => dispatch(serialParser(data)),
+  setWriteSubcription: (data) => dispatch(setWriteSubcription(data)),
+  sendToDevice: (data) => dispatch(sendToDevice(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SettingScreen)

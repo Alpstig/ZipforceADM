@@ -12,84 +12,25 @@ import {
   LogLevel,
 } from 'react-native-ble-plx';
 
-import { connectDevice } from '../actions'
+import { connectDevice, startScanForDevice } from '../actions'
 
 class ScanScreen extends Component {
   constructor(props) {
     super(props)
-    this.manager = new BleManager()
-    this.timeOut
-    this.state = {
-      isON: false,
-      isConnected: false,
-      device: null,
-      isScanning: false,
-      isScanned: false,
-      deviceNames: [],
-      deviceList: [],
-      error: false,
-      errorMsg: "",
-    }
+    this.focusListener = null
   }
 
   componentDidMount() {
-    this.manager.setLogLevel(LogLevel.Verbose);
-    
-  }
-  componentDidMount() {
     const { navigation } = this.props;
+    
     this.focusListener = navigation.addListener('didFocus', () => {
-      const { device, isConnected } = this.props;
-      if (isConnected) {
-          console.log(this.manager)
-          
-          // this.manager.cancelDeviceConnection(device.id).then(this._scan())
-          
-      } else {
-        this._scan()
-      }
+      // const { device, isConnected } = this.props.bluetooth;
+      this.props.scanForDevice()
     });
   }
 
   componentWillUnmount() {
     this.focusListener.remove();
-  }
-
-  _connect = (device) => {
-    this._stop();
-    this.props.connectDevice(device)
-    this.props.navigation.navigate('Home')
-  }
-
-  _scan = () => {
-    this.setState({ isScanning: true, isScanned: false, deviceList: [], deviceNames: [] })
-    this.timeOut = setTimeout(this._stop, 5000)
-    this.manager.startDeviceScan(null, null, (error, device) => {
-
-      if (device) {
-        if (device.name) { // && device.name.startsWith(targetDeviceName)
-          if (this.state.deviceNames.indexOf(device.name) == -1) {
-            this.setState({
-              deviceList: [...this.state.deviceList, device],
-              deviceNames: [...this.state.deviceNames, device.name]
-            })
-          }
-        }
-      }
-
-      if (error) {
-        this.manager.stopDeviceScan()
-        clearTimeout(this.timeOut)
-        this.setState({ isON: false, isScanning: false, isScanned: false, error: true, errorMsg: error.message })
-        return
-      }
-    });
-  }
-  _stop = () => {
-    this.manager.stopDeviceScan()
-    this.setState({ isScanning: false, isScanned: true, error: false })
-    clearTimeout(this.timeOut)
-    console.log('scan stop')
   }
 
   static navigationOptions = {
@@ -98,7 +39,7 @@ class ScanScreen extends Component {
   }
 
   render() {
-    const { deviceList } = this.state
+    const { deviceList } = this.props.bluetooth
     return (
       <SafeAreaView style={styles.container}>
         <View style={{ alignItems: 'center', paddingBottom: 10 }}>
@@ -107,7 +48,7 @@ class ScanScreen extends Component {
         <View>
           <Button
             title={'Scan'}
-            onPress={() => { this._scan() }}
+            onPress={() => this.props.scanForDevice()}
           />
         </View>
         <View>
@@ -118,7 +59,7 @@ class ScanScreen extends Component {
                 title={device.name}
 
                 leftIcon={<Icon name={'bluetooth'} size={30} color={'#0A3D91'} />}
-                onPress={() => this._connect(device)}
+                onPress={() => this.props.connectDevice(device)}
                 chevron
               />)
             })
@@ -137,13 +78,16 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = state => {
-  const { device, isConnected } = state.bluetooth
-  return { device, isConnected }
-};
+const mapStateToProps = state => ({
+  bluetooth: state.bluetooth
+})
 
-const mapDispatchToProps = dispatch => ({
-  connectDevice: (device) => dispatch(connectDevice(device))
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  scanForDevice: () => dispatch(startScanForDevice()),
+  connectDevice: (device) => {
+    dispatch(connectDevice(device))
+    ownProps.navigation.navigate('Home')
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScanScreen)

@@ -6,7 +6,7 @@ import ProgressBar from '../components/progressBar'
 import moment from 'moment'
 import { decode, encode } from 'base-64';
 
-import { disconnect } from '../actions'
+import { serialParser, setWriteSubcription, sendToDevice } from '../actions'
 
 const { width } = Dimensions.get('window');
 const size = width - 100;
@@ -75,11 +75,6 @@ class HomeScreen extends Component {
           });
         }
       });
-
-    this._subscription = device.onDisconnected((error, device) => {
-      this.props.disconnect();
-      this.props.navigation.navigate('Scan')
-    })
   }
 
   _readAndNotify = (service) => {
@@ -89,36 +84,6 @@ class HomeScreen extends Component {
     }
   }
 
-  _serialParser = (rxData) => {
-    rxData = rxData.replace(/\r?\n|\r/g, '')
-    let result = rxData.match(/\#(.*?)\*/gm)
-    if (result != null) {
-      let resultObj = result.reduce((prev, curr) => {
-        curr = curr.replace('*', '')
-        curr = curr.replace('#', '')
-        let key = curr.slice(0, 1)
-        let value = curr.replace(key, '')
-        prev.push({ key, value })
-        return prev
-      }, [])
-      rxData = rxData.slice(rxData.lastIndexOf('*') + 1, rxData.lastIndexOf('*') + 200)
-      var newState = [...this.state.data]
-      resultObj.forEach(obj => {
-
-        var exist = this.state.data.findIndex(x => x.key == obj.key)
-
-        if (exist != -1) {
-          newState[exist] = obj
-        } else {
-          newState.push(obj)
-        }
-      });
-      console.log(newState)
-      this.setState({ rx: rxData, data: newState })
-    }
-    this.setState({ rx: rxData })
-  }
-
   _notifyCharacteristc = (characteristic) => {
     if (characteristic.uuid.substring(0, 8) == '0000ffe1') {
       console.log('_notifyCharacteristc')
@@ -126,18 +91,10 @@ class HomeScreen extends Component {
         this._readSubcription = characteristic.monitor((error, c) => {
           if (error) this.setState({ error: true, errorMsg: error.message })
           if (c) {
-            this._serialParser(this.state.rx + decode(c.value))
+            this.props.serialParser(decode(c.value))
           }
         })
       }
-    }
-  }
-
-  _sendToDevice(value){
-    if(this._writeSubcription != null){
-      console.log('Sending to device:', value, encode(value))
-      
-      this._writeSubcription.writeWithoutResponse(encode(value))
     }
   }
 
@@ -145,13 +102,17 @@ class HomeScreen extends Component {
     if (characteristic.uuid.substring(0, 8) == '0000ffe2') {
       console.log('_writeCharacteristc')
       if (this._writeSubcription == null) {
-        this._writeSubcription = characteristic;
-        this._sendToDevice('M')
+        this.props.setWriteSubcription(characteristic)
+        this.props.sendToDevice('M')
       }
     }
   }
 
   componentDidUpdate(prevProps) {
+    if (!this.props.bluetooth.isConnected) {
+      this.props.navigation.navigate('Scan')
+    }
+
     if (prevProps.isFocused !== this.props.isFocused) {
       console.log('CLOSE!!!')
     }
@@ -160,11 +121,11 @@ class HomeScreen extends Component {
   componentDidMount() {
     const { navigation } = this.props;
     this.focusListener = navigation.addListener('didFocus', () => {
-      const { device, isConnected } = this.props;
+      const { device, isConnected } = this.props.bluetooth;
       if (isConnected) {
         this._connectToDevice(device)
       } else {
-        navigation.navigate('Scan')
+        this.props.navigation.navigate('Scan')
       }
     });
   }
@@ -179,26 +140,36 @@ class HomeScreen extends Component {
   };
 
   render() {
-    const { data } = this.state
-    let speedData = data.find(x => x.key == 'S')
+    const MPHConst = 0.6213711922
     let speed = 0
+    let KMH_MPH = ''
+    const { data } = this.props.bluetooth
+
+    let speedData = data.find(x => x.key == 'S')
+    let unitData = data.find(x => x.key == 'r')
+
+    console.log(unitData)
+
+    if (unitData != null) {
+      KMH_MPH = (unitData.value == '0' ? 'km/h' : 'mph')
+    }
     if (speedData != null) {
       speed = parseInt(speedData.value)
+      if (unitData != null) {
+        speed = (unitData.value == '0' ? speed : Math.round(speed * MPHConst))
+      }
     }
+
     return (
       <SafeAreaView>
         <View style={{ alignItems: 'center', paddingBottom: 10 }}>
           <Image source={require('../assets/logo.png')} style={{ width: 265, height: 60 }} />
-          <Button
-          title={'SEND M'}
-          onPress={()=>this._sendToDevice('M')}
-          />
         </View>
         <View style={styles.speedGuade}>
           <GaugeProgress
             size={size}
             width={thik}
-            fill={speed*2}
+            fill={speed * 2}
             cropDegree={cropDegree}
             strokeCap='circle'
             tintColor='#FC5185'
@@ -208,7 +179,7 @@ class HomeScreen extends Component {
               <Text style={styles.speed}>{speed}</Text>
             </View>
             <View style={styles.textView}>
-              <Text style={[styles.unit, { marginTop: 150, height: 100 }]}>km/h</Text>
+              <Text style={[styles.unit, { marginTop: 150, height: 100 }]}>{KMH_MPH}</Text>
             </View>
 
           </GaugeProgress>
@@ -343,13 +314,14 @@ const styles = StyleSheet.create({
   },
 })
 
-const mapStateToProps = state => {
-  const { device, isConnected } = state.bluetooth
-  return { device, isConnected }
-};
+const mapStateToProps = state => ({
+  bluetooth: state.bluetooth
+});
 
 const mapDispatchToProps = dispatch => ({
-  disconnect: () => dispatch(disconnect()),
+  serialParser: (data) => dispatch(serialParser(data)),
+  setWriteSubcription: (data) => dispatch(setWriteSubcription(data)),
+  sendToDevice: (data) => dispatch(sendToDevice(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
