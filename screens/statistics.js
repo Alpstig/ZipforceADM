@@ -1,34 +1,65 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image, SafeAreaView } from 'react-native'
+import { connect } from 'react-redux'
+import { View, Text, StyleSheet, Image, SafeAreaView, Button, FlatList, TextInput } from 'react-native'
 
-export default class StatisticsScreen extends Component {
+import { sendToDevice } from '../actions'
+
+function Item({ title }) {
+  return (
+    <Text style={styles.title}>{title}</Text>
+  );
+}
+
+class StatisticsScreen extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      sendData: '',
+    }
+  }
+
+  onChangeText = (sendData) => {
+    this.setState({sendData})
+  }
+  sendToDevice = () => {
+    this.props.sendToDevice(this.state.sendData)
+    this.setState({sendData:''})
+  }
+
   static navigationOptions = {
     headerShown: false,
   }
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <View style={{ alignItems: 'center', paddingBottom: 10 }}>
-          <Image source={require('../assets/logo.png')} style={{ width: 265, height: 60 }} />
-        </View>
-        <View>
-          <View style={styles.row}>
-            <View>
-              <Text style={[styles.coll, styles.tableKey]}>Charges made</Text>
-            </View>
-            <View>
-              <Text style={[styles.collValue, styles.tableValue]}>0</Text>
-            </View>
+        <View style={{
+          padding: 10,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}><View>
+            <TextInput
+              style={{ height: 50, width: 250, borderColor: 'gray', borderWidth: 1, color:'black' }}
+              onChangeText={text => this.onChangeText(text)}
+              value={this.state.sendData}
+            />
           </View>
-          <View style={styles.row}>
-            <View>
-              <Text style={[styles.coll, styles.tableKey]}>Distance covered</Text>
-            </View>
-            <View>
-              <Text style={[styles.collValue, styles.tableValue]}>2000</Text>
-            </View>
+          <View>
+            <Button
+              title={'Send'}
+              onPress={() => this.sendToDevice()}
+            />
           </View>
         </View>
+        <FlatList
+          data={this.props.bluetooth.log}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <Item
+
+              title={item}
+            />
+          )}
+        />
       </SafeAreaView>
     )
   }
@@ -37,8 +68,8 @@ export default class StatisticsScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#F5F5F5',
+    // flexDirection: 'column',
+    // backgroundColor: '#F5F5F5',
     padding: 30,
   },
   row: { flexDirection: 'row', paddingTop: 15 },
@@ -55,3 +86,15 @@ const styles = StyleSheet.create({
     fontFamily: 'Orbitron-Bold'
   }
 })
+
+
+const mapStateToProps = state => ({
+  bluetooth: state.bluetooth
+})
+
+const mapDispatchToProps = dispatch => ({
+  sendToDevice: (data) => dispatch(sendToDevice(data)),
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StatisticsScreen)

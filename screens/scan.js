@@ -22,11 +22,17 @@ class ScanScreen extends Component {
 
   componentDidMount() {
     const { navigation } = this.props;
-    
+
     this.focusListener = navigation.addListener('didFocus', () => {
       // const { device, isConnected } = this.props.bluetooth;
       this.props.scanForDevice()
     });
+  }
+  componentDidUpdate() {
+    const { isConnected } = this.props.bluetooth
+    if (isConnected) {
+      this.props.navigation.navigate('Home')
+    }
   }
 
   componentWillUnmount() {
@@ -82,11 +88,10 @@ const mapStateToProps = state => ({
   bluetooth: state.bluetooth
 })
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = dispatch => ({
   scanForDevice: () => dispatch(startScanForDevice()),
   connectDevice: (device) => {
     dispatch(connectDevice(device))
-    ownProps.navigation.navigate('Home')
   }
 });
 

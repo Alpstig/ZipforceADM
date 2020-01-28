@@ -1,6 +1,6 @@
 import {
-  CONNECT_PENDING, CONNECT_SUCCESS, CONNECT_FAILURE, START_SCAN, STOP_SCAN, FOUND_SCAN, SET_RX, SET_DATA,
-  DISCONNECT_PENDING, DISCONNECT_SUCCESS, DISCONNECT_FAILURE,SUBSCRIPTION_ON_DISCONNECTED, SET_WRITE_SUBCRIPTION
+  CONNECT_PENDING, CONNECT_SUCCESS, CONNECT_FAILURE, START_SCAN, STOP_SCAN, FOUND_SCAN, SET_RX, SET_DATA, LOG_WRITE, SET_CHARACTERISTICS,
+  DISCONNECT_PENDING, DISCONNECT_SUCCESS, DISCONNECT_FAILURE, SUBSCRIPTION_ON_DISCONNECTED, SET_WRITE_SUBCRIPTION, SET_READ_SUBCRIPTION, LOG_CLEAR
 } from '../actionTypes/bluetooth'
 
 import {
@@ -11,6 +11,7 @@ import {
   LogLevel,
 } from 'react-native-ble-plx';
 import { stopScaning } from '../actions';
+import { act } from 'react-test-renderer';
 
 const initialState = {
   manager: new BleManager(),
@@ -25,24 +26,48 @@ const initialState = {
   scanTimer: null,
   subscriptionOnDisconnected: null,
   data: [],
-  writeSubcription: null, // todo
-  rx:''
+  writeSubcription: null,
+  readSubcription: null,
+  rx: '',
+  log: [],
+  characteristics: []
 }
 
 const bluetooth = (state = initialState, action) => {
   switch (action.type) {
+    case SET_CHARACTERISTICS:
+      return {
+        ...state,
+        characteristics: action.payload
+      }
+    case LOG_WRITE:
+      return {
+        ...state,
+        log: [action.payload, ...state.log]
+      }
+    case LOG_CLEAR:
+      return {
+        ...state,
+        log: []
+      }
+
     case SET_WRITE_SUBCRIPTION:
-      return{
+      return {
         ...state,
         writeSubcription: action.payload
       }
+    case SET_READ_SUBCRIPTION:
+      return {
+        ...state,
+        readSubcription: action.payload
+      }
     case SET_DATA:
-      return{
+      return {
         ...state,
         data: action.payload
       }
-      case SET_RX:
-      return{
+    case SET_RX:
+      return {
         ...state,
         rx: action.payload
       }
@@ -64,8 +89,8 @@ const bluetooth = (state = initialState, action) => {
     case FOUND_SCAN:
       return {
         ...state,
-        deviceList:[...state.deviceList, action.payload.device],
-        deviceNames:[...state.deviceNames, action.payload.device.name]
+        deviceList: [...state.deviceList, action.payload.device],
+        deviceNames: [...state.deviceNames, action.payload.device.name]
       }
     case CONNECT_PENDING:
       return {
@@ -80,8 +105,8 @@ const bluetooth = (state = initialState, action) => {
         pending: false,
         isConnected: true,
         device: action.payload,
-        deviceList:[],
-        deviceNames:[]
+        deviceList: [],
+        deviceNames: []
       };
 
     case DISCONNECT_PENDING:
@@ -90,18 +115,18 @@ const bluetooth = (state = initialState, action) => {
         pending: true,
         error: false,
       };
-case SUBSCRIPTION_ON_DISCONNECTED:
-  return{
-    ...state,
-    subscriptionOnDisconnected: null
-  }
+    case SUBSCRIPTION_ON_DISCONNECTED:
+      return {
+        ...state,
+        subscriptionOnDisconnected: action.payload
+      }
     case DISCONNECT_SUCCESS:
       return {
         ...state,
         pending: false,
         subscriptionOnDisconnected: null,
         device: null,
-        isScanning:false,
+        isScanning: false,
         isConnected: false,
       };
 

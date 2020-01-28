@@ -38,74 +38,6 @@ class HomeScreen extends Component {
   constructor(props) {
     super(props)
     this.focusListener = null
-    this._characteristics = null
-    this._readSubcription = null
-    this._writeSubcription = null
-    this._device = null;
-    this.state = {
-      device: false,
-      isScanning: false,
-      isScanned: false,
-      deviceNames: [],
-      deviceList: [],
-      error: false,
-      errorMsg: "",
-      rx: "",
-      data: [],
-      debug: ''
-    }
-  }
-
-  _connectToDevice = (device) => {
-    device
-      .connect()
-      .then((device) => {
-        this.setState({ connected: true });
-        this._device = device;
-        return device.discoverAllServicesAndCharacteristics();
-      })
-      .then((device) => {
-        return device.services();
-      })
-      .then((services) => {
-        for (const service of services) {
-          service.characteristics().then((characteristics) => {
-            this._characteristics = characteristics;
-            this._readAndNotify(service);
-          });
-        }
-      });
-  }
-
-  _readAndNotify = (service) => {
-    for (const characteristic of this._characteristics) {
-      if (characteristic.isWritableWithoutResponse) this._writeCharacteristc(characteristic);
-      if (characteristic.isNotifiable) this._notifyCharacteristc(characteristic);
-    }
-  }
-
-  _notifyCharacteristc = (characteristic) => {
-    if (characteristic.uuid.substring(0, 8) == '0000ffe1') {
-      console.log('_notifyCharacteristc')
-      if (this._readSubcription == null) {
-        this._readSubcription = characteristic.monitor((error, c) => {
-          if (error) this.setState({ error: true, errorMsg: error.message })
-          if (c) {
-            this.props.serialParser(decode(c.value))
-          }
-        })
-      }
-    }
-  }
-
-  _writeCharacteristc = (characteristic) => {
-    if (characteristic.uuid.substring(0, 8) == '0000ffe2') {
-      console.log('_writeCharacteristc')
-      if (this._writeSubcription == null) {
-        this.props.setWriteSubcription(characteristic)
-        this.props.sendToDevice('M')
-      }
-    }
   }
 
   componentDidUpdate(prevProps) {
@@ -121,10 +53,9 @@ class HomeScreen extends Component {
   componentDidMount() {
     const { navigation } = this.props;
     this.focusListener = navigation.addListener('didFocus', () => {
-      const { device, isConnected } = this.props.bluetooth;
-      if (isConnected) {
-        this._connectToDevice(device)
-      } else {
+      const { isConnected } = this.props.bluetooth;
+      console.log('isConnected', isConnected);
+      if (!isConnected) {
         this.props.navigation.navigate('Scan')
       }
     });
@@ -147,8 +78,6 @@ class HomeScreen extends Component {
 
     let speedData = data.find(x => x.key == 'S')
     let unitData = data.find(x => x.key == 'r')
-
-    console.log(unitData)
 
     if (unitData != null) {
       KMH_MPH = (unitData.value == '0' ? 'km/h' : 'mph')
