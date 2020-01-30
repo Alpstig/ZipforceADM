@@ -129,7 +129,7 @@ class HomeScreen extends Component {
               barColor={'#FC5185'}
               borderRadius={4}
               borderColor={'#364F6B'}
-              progress={parseInt(m)}
+              progress={parseInt(m/100)}
               duration={500}
             />
           </View>
