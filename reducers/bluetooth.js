@@ -1,5 +1,5 @@
 import {
-  CONNECT_PENDING, CONNECT_SUCCESS, CONNECT_FAILURE, START_SCAN, STOP_SCAN, FOUND_SCAN, SET_RX, SET_DATA, LOG_WRITE, SET_CHARACTERISTICS,
+  CONNECT_PENDING, CONNECT_SUCCESS, CONNECT_FAILURE, START_SCAN, STOP_SCAN, FOUND_SCAN, SET_RX, SET_DATA, LOG_WRITE, SET_CHARACTERISTICS,SET_VALUE,
   DISCONNECT_PENDING, DISCONNECT_SUCCESS, DISCONNECT_FAILURE, SUBSCRIPTION_ON_DISCONNECTED, SET_WRITE_SUBCRIPTION, SET_READ_SUBCRIPTION, LOG_CLEAR
 } from '../actionTypes/bluetooth'
 
@@ -10,7 +10,6 @@ import {
   State,
   LogLevel,
 } from 'react-native-ble-plx';
-import { stopScaning } from '../actions';
 import { act } from 'react-test-renderer';
 
 const initialState = {
@@ -18,6 +17,7 @@ const initialState = {
   pending: false,
   error: false,
   isScanning: false,
+  isLoading: false,
   isConnected: false,
   deviceNames: [],
   device: null,
@@ -26,6 +26,26 @@ const initialState = {
   scanTimer: null,
   subscriptionOnDisconnected: null,
   data: [],
+  value:{
+    r:0,
+    k:0,
+    m:0,
+    n:0,
+    R:0,
+    S:0,
+    z:0,
+    F:0,
+    J:0,
+    O:0,
+    p:0,
+    P:0,
+    N:0,
+    x:0,
+    K:'',
+    l:'',
+    L:'',
+    q:''
+  },
   writeSubcription: null,
   readSubcription: null,
   rx: '',
@@ -35,6 +55,11 @@ const initialState = {
 
 const bluetooth = (state = initialState, action) => {
   switch (action.type) {
+    case SET_VALUE:
+      return {
+        ...state,
+        value: {...state.value, [action.payload.key]: action.payload.value}
+      }
     case SET_CHARACTERISTICS:
       return {
         ...state,

@@ -32,34 +32,7 @@ class StatisticsScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <View style={{
-          padding: 10,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}><View>
-            <TextInput
-              style={{ height: 50, width: 250, borderColor: 'gray', borderWidth: 1, color:'black' }}
-              onChangeText={text => this.onChangeText(text)}
-              value={this.state.sendData}
-            />
-          </View>
-          <View>
-            <Button
-              title={'Send'}
-              onPress={() => this.sendToDevice()}
-            />
-          </View>
-        </View>
-        <FlatList
-          data={this.props.bluetooth.log}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => (
-            <Item
-
-              title={item}
-            />
-          )}
-        />
+       
       </SafeAreaView>
     )
   }
@@ -68,9 +41,8 @@ class StatisticsScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // flexDirection: 'column',
-    // backgroundColor: '#F5F5F5',
-    padding: 30,
+    flexDirection: 'column',
+    backgroundColor: '#F5F5F5',
   },
   row: { flexDirection: 'row', paddingTop: 15 },
   coll: { paddingRight: 10, width: 250 },

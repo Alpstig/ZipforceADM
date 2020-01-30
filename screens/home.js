@@ -4,9 +4,8 @@ import { AnimatedGaugeProgress, GaugeProgress } from 'react-native-simple-gauge'
 import { View, Text, Dimensions, StyleSheet, Image, SafeAreaView, Button } from 'react-native'
 import ProgressBar from '../components/progressBar'
 import moment from 'moment'
-import { decode, encode } from 'base-64';
 
-import { serialParser, setWriteSubcription, sendToDevice } from '../actions'
+import { sendToDevice } from '../actions'
 
 const { width } = Dimensions.get('window');
 const size = width - 100;
@@ -38,6 +37,7 @@ class HomeScreen extends Component {
   constructor(props) {
     super(props)
     this.focusListener = null
+    this.willBlurListener = null
   }
 
   componentDidUpdate(prevProps) {
@@ -53,12 +53,15 @@ class HomeScreen extends Component {
   componentDidMount() {
     const { navigation } = this.props;
     this.focusListener = navigation.addListener('didFocus', () => {
-      const { isConnected } = this.props.bluetooth;
-      console.log('isConnected', isConnected);
-      if (!isConnected) {
+      const { isConnected, isScanning} = this.props.bluetooth;
+      if (!isConnected && !isScanning) {
         this.props.navigation.navigate('Scan')
       }
     });
+    // this.willBlurListener = navigation.addListener('didBlur', () => {
+    //   console.log('HOME stopScaning')
+    //   this.props.stopScaning()
+    // });
   }
 
   componentWillUnmount() {
@@ -72,23 +75,11 @@ class HomeScreen extends Component {
 
   render() {
     const MPHConst = 0.6213711922
-    let speed = 0
-    let KMH_MPH = ''
-    const { data } = this.props.bluetooth
 
-    let speedData = data.find(x => x.key == 'S')
-    let unitData = data.find(x => x.key == 'r')
+    let { S, r, k, m, n, R, z } = this.props.bluetooth.value
 
-    if (unitData != null) {
-      KMH_MPH = (unitData.value == '0' ? 'km/h' : 'mph')
-    }
-    if (speedData != null) {
-      speed = parseInt(speedData.value)
-      if (unitData != null) {
-        speed = (unitData.value == '0' ? speed : Math.round(speed * MPHConst))
-      }
-    }
-
+    let speed = (r == '0' ? S : Math.round(S * MPHConst))
+    let KMH_MPH = (r == '0' ? 'km/h' : 'mph')
     return (
       <SafeAreaView>
         <View style={{ alignItems: 'center', paddingBottom: 10 }}>
@@ -98,11 +89,11 @@ class HomeScreen extends Component {
           <GaugeProgress
             size={size}
             width={thik}
-            fill={speed * 2}
+            fill={parseInt(speed*2)}
             cropDegree={cropDegree}
             strokeCap='circle'
             tintColor='#FC5185'
-            delay={0}
+            delay={50}
             backgroundColor='#364F6B'>
             <View style={styles.textView}>
               <Text style={styles.speed}>{speed}</Text>
@@ -138,13 +129,13 @@ class HomeScreen extends Component {
               barColor={'#FC5185'}
               borderRadius={4}
               borderColor={'#364F6B'}
-              progress={0.5}
+              progress={parseInt(m)}
               duration={500}
             />
           </View>
           <View style={styles.row}>
             <Text style={[styles.tableKey, { paddingRight: 10 }]}>Battery</Text>
-            <Text style={[styles.tableValue]}>50%</Text>
+            <Text style={[styles.tableValue]}>{m}%</Text>
           </View>
         </View>
 
@@ -154,7 +145,7 @@ class HomeScreen extends Component {
               <Text style={[styles.coll, styles.tableKey]}>POWER</Text>
             </View>
             <View>
-              <Text style={[styles.collValue, styles.tableValue]}>0</Text>
+          <Text style={[styles.collValue, styles.tableValue]}>{R}</Text>
             </View>
           </View>
           <View style={styles.row}>
@@ -170,7 +161,7 @@ class HomeScreen extends Component {
               <Text style={[styles.coll, styles.tableKey]}>CAD</Text>
             </View>
             <View>
-              <Text style={[styles.collValue, styles.tableValue]}>0</Text>
+          <Text style={[styles.collValue, styles.tableValue]}>{n}</Text>
             </View>
           </View>
           <View style={styles.row}>
@@ -178,7 +169,7 @@ class HomeScreen extends Component {
               <Text style={[styles.coll, styles.tableKey]}>EFFECT (W)</Text>
             </View>
             <View>
-              <Text style={[styles.collValue, styles.tableValue]}>100</Text>
+              <Text style={[styles.collValue, styles.tableValue]}>{k}</Text>
             </View>
           </View>
           <View style={styles.row}>
@@ -186,7 +177,7 @@ class HomeScreen extends Component {
               <Text style={[styles.coll, styles.tableKey]}>DISTANCE</Text>
             </View>
             <View>
-              <Text style={[styles.collValue, styles.tableValue]}>1000</Text>
+              <Text style={[styles.collValue, styles.tableValue]}>{z}</Text>
             </View>
           </View>
         </View>
@@ -248,8 +239,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  serialParser: (data) => dispatch(serialParser(data)),
-  setWriteSubcription: (data) => dispatch(setWriteSubcription(data)),
   sendToDevice: (data) => dispatch(sendToDevice(data)),
 });
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { StyleSheet, SafeAreaView, Text, View, Image, Picker } from 'react-native'
+import { StyleSheet, SafeAreaView, Text, View, Image, ScrollView } from 'react-native'
 import { ListItem } from 'react-native-elements'
 import AuthButtons from '../components/authButtons'
 import { sendToDevice } from '../actions'
@@ -29,7 +29,7 @@ class SettingScreen extends Component {
       }
     }
   }
-  
+
   componentDidMount() {
     this.props.sendToDevice('S')
     firebase.auth().onAuthStateChanged((user) => {
@@ -43,18 +43,19 @@ class SettingScreen extends Component {
 
   render() {
     const { user } = this.state
-    const {data} = this.props.bluetooth
-    const unitData = data.find(x => x.key == 'r')
-    let unit = false
-    if (unitData != null) {
-      unit = (unitData.value == '0'?false:true)
-    }
-    
+    let { r, p, O, J, F, N, x, q, K, l, L} = this.props.bluetooth.value
+    let { isConnected } = this.props.bluetooth
+    let unit = (r == '0' ? false : true)
+    let breaking = (p == '0' ? false : true)
+    let light = (O == '0' ? false : true)
+    let reverse = (J == '0' ? false : true)
+    let KMH_MPH = (r == '0' ? 'km/h' : 'mph')
     return (
       <SafeAreaView style={styles.container}>
         <View style={{ alignItems: 'center', paddingBottom: 10 }}>
           <Image source={require('../assets/logo.png')} style={{ width: 265, height: 60 }} />
         </View>
+        <ScrollView style={styles.scrollView}>
         <AuthButtons
           currentUser={user}
           onClickLogin={() => this.props.navigation.navigate('Login')}
@@ -69,57 +70,90 @@ class SettingScreen extends Component {
           chevron={{ color: '#FC5185' }}
           bottomDivider
         />
-        {/* <ListItem
+        <ListItem
           key={3}
           title={'Reverse Mode'}
-          onChange={(e) => this.changeSettings('direction', e)}
+          onChange={(e) => this.props.sendToDevice(`CJ${(e.nativeEvent.value ? 1 : 0)}`)}
           switch={{
-            value: direction.value,
-            disabled: direction.disabled
+            value: reverse,
+            disabled: !isConnected
           }}
           bottomDivider
         />
         <ListItem
           key={4}
           title={'Light'}
-          onChange={(e) => this.changeSettings('light', e)}
+          onChange={(e) => this.props.sendToDevice(`CO${(e.nativeEvent.value ? 1 : 0)}`)}
           switch={{
-            value: light.value,
-            disabled: light.disabled
+            value: light,
+            disabled: !isConnected
           }}
           bottomDivider
         />
         <ListItem
           key={5}
           title={'Regenerative breaking'}
-          onChange={(e) => this.changeSettings('recovery', e)}
+          onChange={(e) => this.props.sendToDevice(`Cp${(e.nativeEvent.value ? 1 : 0)}`)}
           switch={{
-            value: recovery.value,
-            disabled: recovery.disabled
-          }}
-          bottomDivider
-        /> */}
-        <ListItem
-          key={6}
-          title={'Speed unit km/h - mph'}
-          onChange={(e) => this.props.sendToDevice(`Cr${(e.nativeEvent.value?1:0)}`)}
-          switch={{
-            value: unit,
+            value: breaking,
+            disabled: !isConnected
           }}
           bottomDivider
         />
-        <View style={{ alignItems: 'center' }}>
-          <Text style={{ fontSize: 25 }}>Select Speed</Text>
-        </View>
-        <Picker>
-          <Picker.Item label='off' value='Off' />
-          <Picker.Item label='1' value='1' />
-          <Picker.Item label='2' value='2' />
-          <Picker.Item label='3' value='3' />
-          <Picker.Item label='4' value='4' />
-          <Picker.Item label='5' value='5' />
-          <Picker.Item label='6' value='6' />
-        </Picker>
+        <ListItem
+          key={6}
+          title={'Speed unit km/h - mph'}
+          onChange={(e) => this.props.sendToDevice(`Cr${(e.nativeEvent.value ? 1 : 0)}`)}
+          switch={{
+            value: unit,
+            disabled: !isConnected
+          }}
+          bottomDivider
+        />
+        <ListItem
+          key={7}
+          title={'Select speed'}
+        rightElement={<Text>{F} {KMH_MPH}</Text>}
+          chevron={{ color: '#FC5185' }}
+          bottomDivider
+        />
+        <ListItem
+          key={8}
+          title={'Charges made'}
+        rightElement={<Text>{N}</Text>}
+          bottomDivider
+        />
+        <ListItem
+          key={9}
+          title={'Distance covered'}
+        rightElement={<Text>{x}</Text>}
+          bottomDivider
+        />
+        <ListItem
+          key={10}
+          title={'Version'}
+        rightElement={<Text>{q}</Text>}
+          bottomDivider
+        />
+        <ListItem
+          key={11}
+          title={'Chassi-ID'}
+        rightElement={<Text>{l}</Text>}
+          bottomDivider
+        />
+        <ListItem
+          key={12}
+          title={'PCB-ID'}
+        rightElement={<Text>{L}</Text>}
+          bottomDivider
+        />
+        <ListItem
+          key={13}
+          title={'Bluetooth name'}
+        rightElement={<Text>{K}</Text>}
+          bottomDivider
+        />
+        </ScrollView>
       </SafeAreaView>
     )
   }
@@ -128,6 +162,9 @@ class SettingScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F5F5F5',
+  },
+  scrollView: {
+    paddingBottom: 20,
   },
   space: {
     paddingBottom: 10

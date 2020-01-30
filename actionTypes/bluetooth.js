@@ -21,3 +21,5 @@ export const LOG_WRITE = 'LOG_WRITE'
 export const LOG_CLEAR = 'LOG_CLEAR'
 
 export const SET_CHARACTERISTICS = 'SET_CHARACTERISTICS'
+
+export const SET_VALUE = 'SET_VALUE'

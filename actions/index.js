@@ -22,6 +22,7 @@ import {
   SET_RX,
   SET_WRITE_SUBCRIPTION,
   SET_READ_SUBCRIPTION,
+  SET_VALUE,
   LOG_CLEAR,
   LOG_WRITE
 } from '../actionTypes/bluetooth'
@@ -38,6 +39,17 @@ export const setRx = rx => (dispatch, getState) => {
   dispatch({ type: SET_RX, payload: rx })
 }
 
+export const setValue = (key, value) => (dispatch, getState) => {
+  dispatch({ type: SET_VALUE, payload: { key, value} })
+}
+
+export const initScreens = () => dispatch => {
+  dispatch(setData('M'))
+  dispatch(setData('S'))
+  dispatch(setData('T'))
+  dispatch(setData('t'))
+}
+
 export const sendToDevice = value => (dispatch, getState) => {
   const { writeSubcription } = getState().bluetooth
   if (writeSubcription != null) {
@@ -47,39 +59,19 @@ export const sendToDevice = value => (dispatch, getState) => {
 }
 
 export const serialParser = (rxData) => (dispatch, getState) => {
-  const { rx, data } = getState().bluetooth
+  const { rx } = getState().bluetooth
   let newRxData = rx + rxData
-
-  let result = newRxData.match(/\#(.*?)\*/gm)
+  let result = newRxData.match(/\#[rkmnRSzFJOpPNxKlLq](.*?)\*/gm)
   if (result != null) {
-    let resultObj = result.reduce((prev, curr) => {
-      curr = curr.replace('*', '')
-      curr = curr.replace('#', '')
-      let key = curr.slice(0, 1)
-      let value = curr.replace(key, '')
-      prev.push({ key, value })
-      return prev
-    }, [])
-    newRxData = newRxData.slice(newRxData.lastIndexOf('*') + 1, newRxData.lastIndexOf('*') + 200)
-    var newState = [...data]
-    resultObj.forEach(obj => {
-
-
-      let existData = data.findIndex(x => x.key == obj.key)
-      let existState = newState.findIndex(x => x.key == obj.key)
-
-      if (existData == -1 && existState == -1) {
-        newState.push(obj)
-      } else {
-        if (existState != -1) {
-          newState[existState] = obj
-        }
-        if (existData != -1) {
-          newState[existData] = obj
-        }
-      }
+    result.forEach(e => {
+      e = e.replace('*', '')
+      e = e.replace('#', '')
+      let key = e.slice(0, 1)
+      let value = e.replace(key, '')
+      dispatch(setValue(key, value))
     });
-    dispatch(setData(newState))
+    newRxData = newRxData.slice(newRxData.lastIndexOf('*') + 1, newRxData.lastIndexOf('*') + 200)
+
   }
   dispatch(setRx(newRxData))
 }
@@ -224,6 +216,7 @@ export const connectDevice = (device) => (dispatch, getState) => {
           }
         });
       }
+      dispatch(initScreens())
     });
 
 

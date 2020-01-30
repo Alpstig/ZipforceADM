@@ -12,20 +12,24 @@ import {
   LogLevel,
 } from 'react-native-ble-plx';
 
-import { connectDevice, startScanForDevice } from '../actions'
+import { connectDevice, startScanForDevice, stopScaning } from '../actions'
 
 class ScanScreen extends Component {
   constructor(props) {
     super(props)
     this.focusListener = null
+    this.willBlurListener = null
   }
 
   componentDidMount() {
     const { navigation } = this.props;
 
     this.focusListener = navigation.addListener('didFocus', () => {
-      // const { device, isConnected } = this.props.bluetooth;
       this.props.scanForDevice()
+    });
+
+    this.willBlurListener = navigation.addListener('willBlur', () => {
+      // this.props.stopScaning()
     });
   }
   componentDidUpdate() {
@@ -36,7 +40,10 @@ class ScanScreen extends Component {
   }
 
   componentWillUnmount() {
+    console.log('scan', 'componentWillUnmount')
     this.focusListener.remove();
+    this.willBlurListener.remove();
+    // this.props.stopScaning()
   }
 
   static navigationOptions = {
@@ -89,6 +96,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+  stopScaning: () => dispatch(stopScaning()),
   scanForDevice: () => dispatch(startScanForDevice()),
   connectDevice: (device) => {
     dispatch(connectDevice(device))
