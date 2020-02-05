@@ -21,7 +21,7 @@ export default class RegisterScreen extends Component {
 
   register() {
     const { email, password } = this.state
-    
+
     firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
       .then(() => this.props.navigation.navigate('Settings'))
       .catch((error) => {
@@ -64,8 +64,11 @@ export default class RegisterScreen extends Component {
       <SafeAreaView style={styles.container}>
         <View style={styles.space}>
           <Input
+            label={'Email'}
             textContentType={'username'}
             keyboardType={'email-address'}
+            labelStyle={{ color: '#364F6B' }}
+            inputStyle={{ color: '#FC5185' }}
             placeholder='Email'
             onChangeText={value => this.handleInputChange('email', value)}
             errorStyle={{ color: 'red' }}
@@ -74,8 +77,11 @@ export default class RegisterScreen extends Component {
         </View>
         <View style={styles.space}>
           <Input
+            label={'Password'}
             textContentType={'newPassword'}
             secureTextEntry={true}
+            labelStyle={{ color: '#364F6B' }}
+            inputStyle={{ color: '#FC5185' }}
             placeholder='Password'
             onChangeText={value => this.handleInputChange('password', value)}
             errorStyle={{ color: 'red' }}
@@ -96,9 +102,9 @@ export default class RegisterScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#F5F5F5',
-    padding: 30,
+    justifyContent: 'center',
+    margin: 30,
+
   },
   space: {
     paddingBottom: 10

@@ -67,6 +67,8 @@ const Navigation = createAppContainer(
 );
 
 export default class App extends Component {
+  componentDidMount(){
+  }
   render() {
     return (
       <Provider store={store}>

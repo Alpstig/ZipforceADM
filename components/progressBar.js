@@ -14,7 +14,7 @@ export default class ProgressBar extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.progress !== this.props.progress) {
-            Animated.timing(this.animation, {
+            Animated.timing(this.state.animation, {
                 toValue: this.props.progress,
                 duration: this.props.duration
             }).start();
@@ -41,7 +41,6 @@ export default class ProgressBar extends Component {
             outputRange: ["0%", "100%"],
             extrapolate: "clamp"
         })
-
         return (
             <View style={[{ flexDirection: "row", height }, row ? { flex: 1 } : undefined]}>
                 <View style={{ flex: 1, borderColor, borderWidth, borderRadius }}>

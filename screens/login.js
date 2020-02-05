@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, Alert, StyleSheet, SafeAreaView } from 'react-native'
-import { Input, Button } from 'react-native-elements'
+import { Input, Button, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
 
 import firebase from '../utils/firebase'
 
@@ -98,6 +98,9 @@ export default class LoginScreen extends Component {
       <SafeAreaView style={styles.container}>
         <View style={styles.space}>
           <Input
+            label={'Email'}
+            labelStyle={{ color: '#364F6B' }}
+            inputStyle={{ color: '#FC5185' }}
             textContentType={'username'}
             keyboardType={'email-address'}
             placeholder='Email'
@@ -108,6 +111,9 @@ export default class LoginScreen extends Component {
         </View>
         <View style={styles.space}>
           <Input
+            label={'Password'}
+            labelStyle={{ color: '#364F6B' }}
+            inputStyle={{ color: '#FC5185' }}
             textContentType={'newPassword'}
             secureTextEntry={true}
             placeholder='Password'
@@ -136,9 +142,9 @@ export default class LoginScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#F5F5F5',
-    padding: 30,
+    justifyContent: 'center',
+    margin: 30,
+
   },
   space: {
     paddingBottom: 10

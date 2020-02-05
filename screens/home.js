@@ -8,7 +8,7 @@ import moment from 'moment'
 import { sendToDevice } from '../actions'
 
 const { width } = Dimensions.get('window');
-const size = width - 100;
+const size = 250; //width - 150;
 const thik = 15;
 const cropDegree = 90;
 const textOffset = thik;
@@ -26,9 +26,6 @@ const minuteHandStyles = () => {
     height: 10,
     position: 'absolute',
     backgroundColor: '#364F6B',
-    top: -150,
-    left: 0,
-    paddingTop: 20,
     paddingHorizontal: 1
   }
 }
@@ -80,6 +77,10 @@ class HomeScreen extends Component {
 
     let speed = (r == '0' ? S : Math.round(S * MPHConst))
     let KMH_MPH = (r == '0' ? 'km/h' : 'mph')
+
+    let batteryProgress = parseFloat(m/100);
+
+
     return (
       <SafeAreaView>
         <View style={{ alignItems: 'center', paddingBottom: 10 }}>
@@ -87,13 +88,13 @@ class HomeScreen extends Component {
         </View>
         <View style={styles.speedGuade}>
           <GaugeProgress
-            size={size}
+            size={size} //size
             width={thik}
             fill={parseInt(speed*2)}
             cropDegree={cropDegree}
             strokeCap='circle'
             tintColor='#FC5185'
-            delay={50}
+            delay={0}
             backgroundColor='#364F6B'>
             <View style={styles.textView}>
               <Text style={styles.speed}>{speed}</Text>
@@ -103,14 +104,14 @@ class HomeScreen extends Component {
             </View>
 
           </GaugeProgress>
-          <View>
+          <View style={{position:'absolute', marginTop: 140}}> 
             {smalldata.map((data, index) => {
               return (
                 <View key={index} style={[minuteHandStyles(), {
                   transform: [{
                     rotate: data + 'deg'
                   }, {
-                    translateY: -(25 + 5 / 2 + 80)
+                    translateY: -(85 + 5 / 2 + 10)
                   }
                   ]
                 }]}
@@ -118,9 +119,8 @@ class HomeScreen extends Component {
               );
             })}
           </View>
-
         </View>
-        <View style={{ alignItems: 'center' }}>
+        <View style={{ alignItems: 'center', margin: 30 }}>
           <View style={{ width: size }}>
             <ProgressBar
               height={20}
@@ -129,8 +129,8 @@ class HomeScreen extends Component {
               barColor={'#FC5185'}
               borderRadius={4}
               borderColor={'#364F6B'}
-              progress={parseInt(m/100)}
-              duration={500}
+              progress={batteryProgress}
+              duration={50}
             />
           </View>
           <View style={styles.row}>
@@ -164,17 +164,17 @@ class HomeScreen extends Component {
           <Text style={[styles.collValue, styles.tableValue]}>{n}</Text>
             </View>
           </View>
-          <View style={styles.row}>
+          {/* <View style={styles.row}>
             <View>
               <Text style={[styles.coll, styles.tableKey]}>EFFECT (W)</Text>
             </View>
             <View>
               <Text style={[styles.collValue, styles.tableValue]}>{k}</Text>
             </View>
-          </View>
+          </View> */}
           <View style={styles.row}>
             <View>
-              <Text style={[styles.coll, styles.tableKey]}>DISTANCE</Text>
+              <Text style={[styles.coll, styles.tableKey]}>DISTANCE (m)</Text>
             </View>
             <View>
               <Text style={[styles.collValue, styles.tableValue]}>{z}</Text>
@@ -195,6 +195,7 @@ const styles = StyleSheet.create({
     padding: 50
   },
   speedGuade: {
+    position:'relative',
     paddingTop: 20,
     alignItems: 'center',
   },

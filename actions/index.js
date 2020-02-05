@@ -45,9 +45,6 @@ export const setValue = (key, value) => (dispatch, getState) => {
 
 export const initScreens = () => dispatch => {
   dispatch(setData('M'))
-  dispatch(setData('S'))
-  dispatch(setData('T'))
-  dispatch(setData('t'))
 }
 
 export const sendToDevice = value => (dispatch, getState) => {
