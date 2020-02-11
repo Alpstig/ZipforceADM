@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: '#364F6B',
     fontFamily: 'Orbitron-Bold',
-    textAlign: 'right',
+    textAlign: 'left',
     alignSelf: 'stretch',
     marginLeft: 10
   },
