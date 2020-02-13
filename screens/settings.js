@@ -59,7 +59,7 @@ class SettingScreen extends Component {
     let light = (O == '0' ? false : true)
     let reverse = (J == '0' ? false : true)
     let KMH_MPH = (r == '0' ? 'km/h' : 'mph')
-    let saveButtonModal = (this.state.newPin.length != 6)?true:false;
+    let saveButtonModal = (this.state.newPin.length != 4)?true:false;
 
     return (
       <SafeAreaView style={styles.container}>
@@ -77,7 +77,7 @@ class SettingScreen extends Component {
                 placeholderTextColor={'#000000'}
                 underlineColorAndroid='transparent'
                 style={styles.TextInputStyle}
-                maxLength={6}
+                maxLength={4}
                 
                 onChangeText={pin => this.setState({'newPin': pin})}
                 keyboardType={'numeric'}

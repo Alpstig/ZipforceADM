@@ -82,7 +82,7 @@ class HomeScreen extends Component {
 
 
     return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.container}>
         <View style={{ alignItems: 'center', paddingBottom: 10 }}>
           <Image source={require('../assets/logo.png')} style={{ width: 265, height: 60 }} />
         </View>
@@ -192,7 +192,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#F5F5F5',
-    padding: 50
+    padding: 50,
+    margin: 50
   },
   speedGuade: {
     position:'relative',
@@ -200,8 +201,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   row: { flexDirection: 'row', paddingTop: 15 },
-  coll: { paddingRight: 10, width: 230 },
-  collValue: { paddingRight: 10, width: 100 },
+  coll: { width: 200 },
+  collValue: {width: 100 },
   textView: {
     position: 'absolute',
     paddingTop: 50,
@@ -218,15 +219,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Orbitron-Bold'
   },
   tableKey: {
-    fontSize: 25,
+    fontSize: 23,
     color: '#364F6B',
     fontFamily: 'Orbitron-Bold',
     textAlign: 'left',
-    alignSelf: 'stretch',
-    marginLeft: 10
+    alignSelf: 'stretch'
   },
   tableValue: {
-    fontSize: 25,
+    fontSize: 23,
     color: '#FC5185',
     fontFamily: 'Orbitron-Bold'
   },
