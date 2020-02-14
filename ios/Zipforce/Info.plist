@@ -45,6 +45,8 @@
 	<string>Connect to Zipforce</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSMainNibFile</key>
+	<string>LaunchScreen</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Orbitron-VariableFont:wght.ttf</string>
