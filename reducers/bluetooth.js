@@ -44,7 +44,8 @@ const initialState = {
     K:'',
     l:'',
     L:'',
-    q:''
+    q:'',
+    X:''
   },
   writeSubcription: null,
   readSubcription: null,

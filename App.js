@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import RNBootSplash from "react-native-bootsplash";
 import thunk from 'redux-thunk';
+import NavigationService from './NavigationService';
 
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
@@ -18,11 +20,13 @@ import SettingScreen from './screens/settings'
 import LoginScreen from './screens/login'
 import RegisterScreen from './screens/register'
 import StatisticsScreen from './screens/statistics'
+import AuthScreen from './screens/auth'
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
+  Auth: AuthScreen,
   Scan: ScanScreen,
-});
+},{initialRouteName: 'Scan'});
 
 const SettingsStack = createStackNavigator({
   Settings: SettingScreen,
@@ -68,11 +72,15 @@ const Navigation = createAppContainer(
 
 export default class App extends Component {
   componentDidMount(){
+    RNBootSplash.hide({ duration: 2500 });
   }
   render() {
     return (
       <Provider store={store}>
-        <Navigation />
+        <Navigation ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+      />
       </Provider>
     );
   }

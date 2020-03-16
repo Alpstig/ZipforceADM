@@ -1,4 +1,5 @@
 import { decode, encode } from 'base-64';
+import NavigationService from '../NavigationService';
 import {
   BleManager,
   BleError,
@@ -79,6 +80,7 @@ export const onDisconnected = () => (dispatch, getState) => {
   device.onDisconnected((error, deviceonDisconnected) => {
     dispatch(Log(`onDisconnected`))
     dispatch({ type: DISCONNECT_SUCCESS })
+    NavigationService.navigate('Scan');
   })
 }
 

@@ -52,7 +52,7 @@ class HomeScreen extends Component {
     this.focusListener = navigation.addListener('didFocus', () => {
       const { isConnected, isScanning} = this.props.bluetooth;
       if (!isConnected && !isScanning) {
-        this.props.navigation.navigate('Scan')
+        // this.props.navigation.navigate('Scan')
       }
     });
     // this.willBlurListener = navigation.addListener('didBlur', () => {

@@ -12,6 +12,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		4315A9E90AB040A1AB774B50 /* Orbitron-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2388AF48020243A9A3BA949E /* Orbitron-SemiBold.ttf */; };
 		6AE09CF661BD264AB354D6C9 /* Pods_Zipforce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29D9CB7D61E6F8780C3E2CA /* Pods_Zipforce.framework */; };
+		7C1C40EA241FAC6C00CBA596 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C1C40E9241FAC6C00CBA596 /* BootSplash.storyboard */; };
 		7C2752F823F6112B005E9250 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C2752F623F6112B005E9250 /* LaunchScreen.xib */; };
 		7C6B2D3C23EB87AB006E5AC0 /* Blank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6B2D3B23EB87AB006E5AC0 /* Blank.swift */; };
 		84D2E857055A490FB06AAF1C /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42B3555CE78847B99267E4FE /* Ionicons.ttf */; };
@@ -39,6 +40,7 @@
 		415A51FC97BF4542B1C3A61F /* Orbitron-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-Medium.ttf"; path = "../assets/fonts/static/Orbitron-Medium.ttf"; sourceTree = "<group>"; };
 		42B3555CE78847B99267E4FE /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-ionicons/fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		4344383A9CBE46A7B8726981 /* Orbitron-VariableFont:wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-VariableFont:wght.ttf"; path = "../assets/fonts/Orbitron-VariableFont:wght.ttf"; sourceTree = "<group>"; };
+		7C1C40E9241FAC6C00CBA596 /* BootSplash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = Zipforce/BootSplash.storyboard; sourceTree = "<group>"; };
 		7C2752F723F6112B005E9250 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Zipforce/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7C6B2D3A23EB87AB006E5AC0 /* Zipforce-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Zipforce-Bridging-Header.h"; sourceTree = "<group>"; };
 		7C6B2D3B23EB87AB006E5AC0 /* Blank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Blank.swift; path = Zipforce/Blank.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 				7C6B2D3B23EB87AB006E5AC0 /* Blank.swift */,
 				7C6B2D3A23EB87AB006E5AC0 /* Zipforce-Bridging-Header.h */,
+				7C1C40E9241FAC6C00CBA596 /* BootSplash.storyboard */,
 			);
 			name = Zipforce;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C2752F823F6112B005E9250 /* LaunchScreen.xib in Resources */,
+				7C1C40EA241FAC6C00CBA596 /* BootSplash.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				C4AE9597741F41D78F4CD385 /* Orbitron-VariableFont:wght.ttf in Resources */,
 				FDA8C961B651480E90697D3A /* Orbitron-Black.ttf in Resources */,

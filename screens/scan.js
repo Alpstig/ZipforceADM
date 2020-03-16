@@ -4,13 +4,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { View, Text, StyleSheet, Image, SafeAreaView } from 'react-native';
 import { ListItem, FlatList, Button } from 'react-native-elements'
-import {
-  BleManager,
-  BleError,
-  Device,
-  State,
-  LogLevel,
-} from 'react-native-ble-plx';
 
 import { connectDevice, startScanForDevice, stopScaning } from '../actions'
 

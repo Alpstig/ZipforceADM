@@ -45,8 +45,6 @@
 	<string>Connect to Zipforce</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
-	<key>NSMainNibFile</key>
-	<string>LaunchScreen</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Orbitron-VariableFont:wght.ttf</string>
@@ -63,7 +61,7 @@
 		<string>bluetooth-central</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>BootSplash</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
