@@ -37,34 +37,60 @@ class HomeScreen extends Component {
     this.willBlurListener = null
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const np = nextProps.bluetooth.value
+    const cp = this.props.bluetooth.value
+    console.log(nextProps.bluetooth.isConnected)
+    if(np.S !== cp.S){
+      return true
+    }
+    if(np.r !== cp.r){
+      return true
+    }
+    if(np.k !== cp.k){
+      return true
+    }
+    if(np.m !== cp.m){
+      return true
+    }
+    if(np.n !== cp.n){
+      return true
+    }
+    if(np.R !== cp.R){
+      return true
+    }
+    if(np.z !== cp.z){
+      return true
+    }
+    if(nextProps.bluetooth.isConnected !== this.props.bluetooth.isConnected){
+      return true
+    }
+    return false;
+  }
   componentDidUpdate(prevProps) {
     if (!this.props.bluetooth.isConnected) {
       this.props.navigation.navigate('Scan')
     }
-
-    if (prevProps.isFocused !== this.props.isFocused) {
-      console.log('CLOSE!!!')
-    }
   }
 
   componentDidMount() {
-    const { navigation } = this.props;
-    this.focusListener = navigation.addListener('didFocus', () => {
-      const { isConnected, isScanning} = this.props.bluetooth;
-      if (!isConnected && !isScanning) {
-        // this.props.navigation.navigate('Scan')
-      }
-    });
-    // this.willBlurListener = navigation.addListener('didBlur', () => {
-    //   console.log('HOME stopScaning')
-    //   this.props.stopScaning()
+    // const { navigation } = this.props;
+    // this.focusListener = navigation.addListener('didFocus', () => {
+    //   const { isConnected, isScanning} = this.props.bluetooth;
+    //   if (!isConnected && !isScanning) {
+    //     // this.props.navigation.navigate('Scan')
+    //   }
     // });
+    // // this.willBlurListener = navigation.addListener('didBlur', () => {
+    // //   console.log('HOME stopScaning')
+    // //   this.props.stopScaning()
+    // // });
   }
 
-  componentWillUnmount() {
-    console.log('componentWillUnmount')
-    this.focusListener.remove();
-  }
+  // componentWillUnmount() {
+  //   console.log('componentWillUnmount')
+  //   this.focusListener.remove();
+  // }
 
   static navigationOptions = {
     headerShown: false,
@@ -79,7 +105,6 @@ class HomeScreen extends Component {
     let KMH_MPH = (r == '0' ? 'km/h' : 'mph')
 
     let batteryProgress = parseFloat(m/100);
-
 
     return (
       <SafeAreaView style={styles.container}>
@@ -164,14 +189,14 @@ class HomeScreen extends Component {
           <Text style={[styles.collValue, styles.tableValue]}>{n}</Text>
             </View>
           </View>
-          {/* <View style={styles.row}>
+          <View style={styles.row}>
             <View>
               <Text style={[styles.coll, styles.tableKey]}>EFFECT (W)</Text>
             </View>
             <View>
               <Text style={[styles.collValue, styles.tableValue]}>{k}</Text>
             </View>
-          </View> */}
+          </View>
           <View style={styles.row}>
             <View>
               <Text style={[styles.coll, styles.tableKey]}>DISTANCE (m)</Text>

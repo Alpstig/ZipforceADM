@@ -31,6 +31,9 @@ import {
 export const setWriteSubcription = data => (dispatch, getState) => {
   dispatch({ type: SET_WRITE_SUBCRIPTION, payload: data })
 }
+export const setReadSubcription = data => (dispatch, getState) => {
+  dispatch({ type: SET_READ_SUBCRIPTION, payload: data })
+}
 
 export const setData = data => (dispatch, getState) => {
   dispatch({ type: SET_DATA, payload: data })
@@ -45,21 +48,25 @@ export const setValue = (key, value) => (dispatch, getState) => {
 }
 
 export const initScreens = () => dispatch => {
-  dispatch(setData('M'))
+  // dispatch(setData('M'))
 }
 
 export const sendToDevice = value => (dispatch, getState) => {
-  const { writeSubcription } = getState().bluetooth
-  if (writeSubcription != null) {
-    dispatch(Log(`<==: ${value}`))
-    writeSubcription.writeWithoutResponse(encode(value))
+  const { writeSubcription, isConnected, device } = getState().bluetooth
+  
+  if (writeSubcription != null && isConnected) {
+    const {service, characteristicW} = writeSubcription
+    device.writeCharacteristicWithResponseForService(
+      service, characteristicW, encode(value)
+    ).then(result=>{
+    }).catch(x=> console.error('writeWithoutResponse ERROR',x))
   }
 }
 
 export const serialParser = (rxData) => (dispatch, getState) => {
   const { rx } = getState().bluetooth
   let newRxData = rx + rxData
-  let result = newRxData.match(/\#[rkmnRSzFJOpPNxKlLq](.*?)\*/gm)
+  let result = newRxData.match(/\#[rkmnRSzFJOpPNxKlLqX](.*?)\*/gm)
   if (result != null) {
     result.forEach(e => {
       e = e.replace('*', '')
@@ -74,18 +81,7 @@ export const serialParser = (rxData) => (dispatch, getState) => {
   dispatch(setRx(newRxData))
 }
 
-export const onDisconnected = () => (dispatch, getState) => {
-  const { subscriptionOnDisconnected, device } = getState().bluetooth
-
-  device.onDisconnected((error, deviceonDisconnected) => {
-    dispatch(Log(`onDisconnected`))
-    dispatch({ type: DISCONNECT_SUCCESS })
-    NavigationService.navigate('Scan');
-  })
-}
-
 export const stopScaning = () => (dispatch, getState) => {
-  dispatch(Log(`stopScaning`))
   const { scanTimer, manager } = getState().bluetooth
   clearTimeout(scanTimer)
   manager.stopDeviceScan()
@@ -93,12 +89,10 @@ export const stopScaning = () => (dispatch, getState) => {
 }
 
 export const foundDevice = device => (dispatch, getState) => {
-  dispatch(Log(`foundDevice: ${device.name}`))
   dispatch({ type: FOUND_SCAN, payload: { device } })
 }
 
 export const startScaning = () => (dispatch, getState) => {
-  dispatch(Log(`foundDevice`))
   const scanTimer = setTimeout(() => {
     dispatch(stopScaning())
   }, 5000)
@@ -117,6 +111,7 @@ export const stateChangeFinnish = () => (dispatch, getState) => {
 
 export const startScanForDevice = () => (dispatch, getState) => {
   const { manager } = getState().bluetooth
+
   const subscription = manager.onStateChange((state) => {
     if (state === State.PoweredOn) {
       dispatch(scanForDevice())
@@ -126,9 +121,8 @@ export const startScanForDevice = () => (dispatch, getState) => {
 }
 
 export const scanForDevice = () => (dispatch, getState) => {
-  dispatch(Log(`scanForDevice`))
-
   const { isScanning, manager, device, isConnected } = getState().bluetooth
+
   if (isConnected) {
     dispatch(disconnectDevice())
   }
@@ -158,7 +152,7 @@ export const scanForDevice = () => (dispatch, getState) => {
       if (connected) {
         dispatch(disconnectDevice())
       }
-    })
+    }).catch(console.error)
   }
 }
 
@@ -172,25 +166,15 @@ export const LogClear = () => (dispatch, getState) => {
 
 export const notifyCharacteristc = (characteristic) => (dispatch, getState) => {
   if (characteristic.uuid.substring(0, 8) == '0000ffe1') {
-    dispatch(Log(`notifyCharacteristc: ${characteristic.uuid}`))
     characteristic.monitor((error, c) => {
+      if(error){
+        console.error('notifyCharacteristc',error)
+      }
       // if (error) this.setState({ error: true, errorMsg: error.message })
       if (c) {
-        dispatch(Log(`==>: ${decode(c.value)}`))
         dispatch(serialParser(decode(c.value)))
       }
     })
-  }
-}
-
-export const writeCharacteristc = (characteristic) => (dispatch, getState) => {
-  const { writeSubcription } = getState().bluetooth
-  if (characteristic.uuid.substring(0, 8) == '0000ffe2') {
-    if (writeSubcription == null) {
-      dispatch(Log(`writeCharacteristc: ${characteristic.uuid}`))
-      dispatch(setWriteSubcription(characteristic))
-      dispatch(sendToDevice('M'))
-    }
   }
 }
 
@@ -204,32 +188,56 @@ export const connectDevice = (device) => (dispatch, getState) => {
       return device.discoverAllServicesAndCharacteristics();
     })
     .then((device) => {
-      return device.services();
-    })
-    .then((services) => {
-      for (const service of services) {
-        service.characteristics().then((characteristics) => {
-          for (const characteristic of characteristics) {
-            if (characteristic.isWritableWithoutResponse) dispatch(writeCharacteristc(characteristic));
-            if (characteristic.isNotifiable) dispatch(notifyCharacteristc(characteristic));
-          }
-        });
+      const service = '0000ffe0-0000-1000-8000-00805f9b34fb'
+      const characteristicN = '0000ffe1-0000-1000-8000-00805f9b34fb'
+      const characteristicW = '0000ffe2-0000-1000-8000-00805f9b34fb'
+
+      const readSubcription = device.monitorCharacteristicForService(service, characteristicN, (error, characteristic) => {
+        if(!error){
+          dispatch(serialParser(decode(characteristic.value)))
+        }
+      })
+
+      dispatch(setWriteSubcription({service, characteristicW}))
+      dispatch(setReadSubcription(readSubcription))
+    }).catch(console.error);
+}
+
+export const onDisconnected = () => (dispatch, getState) => {
+  const { device, readSubcription  } = getState().bluetooth
+  const subscriptionOnDisconnected = device.onDisconnected((error, deviceonDisconnected) => {
+    console.log('onDisconnected')
+    if(error){
+      console.error('onDisconnected', error)
+    }else{
+      if(readSubcription != null){
+        readSubcription.remove()
       }
-      dispatch(initScreens())
-    });
-
-
+      if(subscriptionOnDisconnected != null){
+        subscriptionOnDisconnected.remove()
+      }
+      dispatch({ type: DISCONNECT_SUCCESS })
+    }
+  })
+  dispatch({ type: SUBSCRIPTION_ON_DISCONNECTED, payload: subscriptionOnDisconnected })
 }
 
 export const disconnectDevice = () => (dispatch, getState) => {
-  const { device, subscriptionOnDisconnected } = getState().bluetooth
-
-  if (subscriptionOnDisconnected != null) {
-    subscriptionOnDisconnected.remove()
-  }
+  console.log('disconnectDevice')
+  const { device, subscriptionOnDisconnected, readSubcription } = getState().bluetooth
 
   if (device != null) {
-    device.cancelConnection().then(result => dispatch({ type: DISCONNECT_SUCCESS }))
+    device.cancelConnection().then(result => {
+      if(readSubcription != null){
+        readSubcription.remove()
+      }
+      if(subscriptionOnDisconnected != null){
+        subscriptionOnDisconnected.remove()
+      }
+      dispatch({ type: DISCONNECT_SUCCESS })
+    }).catch(x => {
+      console.error(x)
+    })
   } else {
     dispatch({ type: DISCONNECT_SUCCESS })
   }

@@ -7,50 +7,88 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09AB413EA32E425BA3C6E6A9 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C9CE8CC49141F9B3255405 /* SimpleLineIcons.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		4315A9E90AB040A1AB774B50 /* Orbitron-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2388AF48020243A9A3BA949E /* Orbitron-SemiBold.ttf */; };
-		6AE09CF661BD264AB354D6C9 /* Pods_Zipforce.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29D9CB7D61E6F8780C3E2CA /* Pods_Zipforce.framework */; };
-		7C1C40EA241FAC6C00CBA596 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C1C40E9241FAC6C00CBA596 /* BootSplash.storyboard */; };
-		7C2752F823F6112B005E9250 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C2752F623F6112B005E9250 /* LaunchScreen.xib */; };
-		7C6B2D3C23EB87AB006E5AC0 /* Blank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6B2D3B23EB87AB006E5AC0 /* Blank.swift */; };
-		84D2E857055A490FB06AAF1C /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42B3555CE78847B99267E4FE /* Ionicons.ttf */; };
-		88FB6B8EA5AF475BBD96E2A5 /* Orbitron-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB83F01C3C47454DBCB7C221 /* Orbitron-Bold.ttf */; };
-		98BA45BAAECE48C8A663B1E0 /* Orbitron-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE09883B703E44D28524E7E8 /* Orbitron-Regular.ttf */; };
-		C0AD6D0A6F8141979860CA1B /* Orbitron-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B125E4FB130543B19AA46A02 /* Orbitron-ExtraBold.ttf */; };
-		C4AE9597741F41D78F4CD385 /* Orbitron-VariableFont:wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4344383A9CBE46A7B8726981 /* Orbitron-VariableFont:wght.ttf */; };
-		FDA8C961B651480E90697D3A /* Orbitron-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0183516FCB384E0A947C4652 /* Orbitron-Black.ttf */; };
-		FF0A47ACFEDE4FE4A4CC539E /* Orbitron-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 415A51FC97BF4542B1C3A61F /* Orbitron-Medium.ttf */; };
+		14B0C5B976BB4FEBB3E01372 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8236B9E9C3548C6BF21ED10 /* Octicons.ttf */; };
+		16A7E5BB73FB49C8A6EA872B /* Orbitron-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB0DB3CB91F2414785893E2D /* Orbitron-SemiBold.ttf */; };
+		31A98E4DD6FC44128C99328C /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 041032704CF1433C8D1F89DD /* Foundation.ttf */; };
+		35C12B6E51CB4385B9912213 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D965C37C9B49989FD891DE /* FontAwesome5_Regular.ttf */; };
+		476BE88901C644A7B682562A /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 265C47110BF440F2BDF50E32 /* Fontisto.ttf */; };
+		48F585445A5A48579CC99B2C /* Orbitron-VariableFont:wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AADE0F73BD646FC8A557796 /* Orbitron-VariableFont:wght.ttf */; };
+		4C297495CDD1493795E6C802 /* Orbitron-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCAF1E752ABB4ECBA5A21902 /* Orbitron-ExtraBold.ttf */; };
+		518245FA578940AC9ACC38D1 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56B91155958A48F4BB925B0E /* MaterialCommunityIcons.ttf */; };
+		636E4F612EE54AE288666AAF /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDF687BA6C814CE7ACC4BC13 /* FontAwesome.ttf */; };
+		725FA1790C524777AB88DED0 /* Orbitron-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E557C57D0D17454484C40B11 /* Orbitron-Medium.ttf */; };
+		7780F821312245869DA446C8 /* Orbitron-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18EAA5CE1BB44B35A25DD5C7 /* Orbitron-Black.ttf */; };
+		791E1CDAB00C48F28FD21AF2 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 361B86D56FBF4ECC9E1AE0E8 /* Feather.ttf */; };
+		7CD753A62421989100895146 /* empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD753A52421989100895146 /* empty.swift */; };
+		7CD753A82421A16D00895146 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CD753A72421A16D00895146 /* BootSplash.storyboard */; };
+		852CDBBF1CF84E8F96378F9D /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46B4FF703BD8481389E0EFDD /* FontAwesome5_Brands.ttf */; };
+		8B7E31B2DB764DB1989C2559 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81CDB063CC35486AAAAD43AB /* EvilIcons.ttf */; };
+		9252FAEDA78E4D4A9A567125 /* Orbitron-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E07958EDB7804F21AD496B25 /* Orbitron-Bold.ttf */; };
+		A8E9BA7D04324E75BF91CCDD /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46604133AA9E417BBE716B80 /* FontAwesome5_Solid.ttf */; };
+		AE4BF9B3230549A2A93E2B94 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6CA31B0E127431585CE3975 /* MaterialIcons.ttf */; };
+		D415088BB8784139B2FE5B3D /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E8D6AA2404F4F9A9A242728 /* Zocial.ttf */; };
+		DA074DD8878B9D8F09C98994 /* libPods-Zipforce.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC86044E648F29F8D3079A1 /* libPods-Zipforce.a */; };
+		E9EEF37B9FF74D4FA1A88071 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E125DAF5E7154D3A90B4C39C /* Ionicons.ttf */; };
+		F38EE386B219418E8D995236 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78A51F03BD174569A79D882B /* Entypo.ttf */; };
+		F860432E7C43459992BEA56C /* Orbitron-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1E4906AE5FDD4B6FA5B8566A /* Orbitron-Regular.ttf */; };
+		FE6ECB0E28064FB2AF0CF8DD /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C5A5F28AE724432A26E9AD1 /* AntDesign.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ZipforceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZipforceTests.m; sourceTree = "<group>"; };
-		0183516FCB384E0A947C4652 /* Orbitron-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-Black.ttf"; path = "../assets/fonts/static/Orbitron-Black.ttf"; sourceTree = "<group>"; };
+		041032704CF1433C8D1F89DD /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Zipforce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zipforce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Zipforce/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Zipforce/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Zipforce/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Zipforce/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Zipforce/main.m; sourceTree = "<group>"; };
-		16F68557CD010414D54A9288 /* Pods-Zipforce.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zipforce.debug.xcconfig"; path = "Target Support Files/Pods-Zipforce/Pods-Zipforce.debug.xcconfig"; sourceTree = "<group>"; };
-		2388AF48020243A9A3BA949E /* Orbitron-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-SemiBold.ttf"; path = "../assets/fonts/static/Orbitron-SemiBold.ttf"; sourceTree = "<group>"; };
-		415A51FC97BF4542B1C3A61F /* Orbitron-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-Medium.ttf"; path = "../assets/fonts/static/Orbitron-Medium.ttf"; sourceTree = "<group>"; };
-		42B3555CE78847B99267E4FE /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-ionicons/fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		4344383A9CBE46A7B8726981 /* Orbitron-VariableFont:wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-VariableFont:wght.ttf"; path = "../assets/fonts/Orbitron-VariableFont:wght.ttf"; sourceTree = "<group>"; };
-		7C1C40E9241FAC6C00CBA596 /* BootSplash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = Zipforce/BootSplash.storyboard; sourceTree = "<group>"; };
-		7C2752F723F6112B005E9250 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Zipforce/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		7C6B2D3A23EB87AB006E5AC0 /* Zipforce-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Zipforce-Bridging-Header.h"; sourceTree = "<group>"; };
-		7C6B2D3B23EB87AB006E5AC0 /* Blank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Blank.swift; path = Zipforce/Blank.swift; sourceTree = "<group>"; };
-		A29D9CB7D61E6F8780C3E2CA /* Pods_Zipforce.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zipforce.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B125E4FB130543B19AA46A02 /* Orbitron-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-ExtraBold.ttf"; path = "../assets/fonts/static/Orbitron-ExtraBold.ttf"; sourceTree = "<group>"; };
-		BB83F01C3C47454DBCB7C221 /* Orbitron-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-Bold.ttf"; path = "../assets/fonts/static/Orbitron-Bold.ttf"; sourceTree = "<group>"; };
-		CE09883B703E44D28524E7E8 /* Orbitron-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-Regular.ttf"; path = "../assets/fonts/static/Orbitron-Regular.ttf"; sourceTree = "<group>"; };
-		DB578C7ED629AC0044FB74E1 /* Pods-Zipforce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zipforce.release.xcconfig"; path = "Target Support Files/Pods-Zipforce/Pods-Zipforce.release.xcconfig"; sourceTree = "<group>"; };
+		18C9CE8CC49141F9B3255405 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		18EAA5CE1BB44B35A25DD5C7 /* Orbitron-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-Black.ttf"; path = "../assets/fonts/static/Orbitron-Black.ttf"; sourceTree = "<group>"; };
+		1E4906AE5FDD4B6FA5B8566A /* Orbitron-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-Regular.ttf"; path = "../assets/fonts/static/Orbitron-Regular.ttf"; sourceTree = "<group>"; };
+		265C47110BF440F2BDF50E32 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		361B86D56FBF4ECC9E1AE0E8 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		46604133AA9E417BBE716B80 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		46B4FF703BD8481389E0EFDD /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		56B91155958A48F4BB925B0E /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		5C5A5F28AE724432A26E9AD1 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		5E8D6AA2404F4F9A9A242728 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		5EC86044E648F29F8D3079A1 /* libPods-Zipforce.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Zipforce.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		78A51F03BD174569A79D882B /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		7CD753A42421989100895146 /* Zipforce-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Zipforce-Bridging-Header.h"; sourceTree = "<group>"; };
+		7CD753A52421989100895146 /* empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = empty.swift; path = Zipforce/empty.swift; sourceTree = "<group>"; };
+		7CD753A72421A16D00895146 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = Zipforce/BootSplash.storyboard; sourceTree = "<group>"; };
+		7CD753A92421A3A400895146 /* Zipforce.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Zipforce.entitlements; path = Zipforce/Zipforce.entitlements; sourceTree = "<group>"; };
+		81155E660F2F553F42E16BA7 /* Pods-Zipforce-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zipforce-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Zipforce-tvOS/Pods-Zipforce-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		81CDB063CC35486AAAAD43AB /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		8A52D40FB603D14563A02CC4 /* Pods-Zipforce.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zipforce.debug.xcconfig"; path = "Target Support Files/Pods-Zipforce/Pods-Zipforce.debug.xcconfig"; sourceTree = "<group>"; };
+		8AADE0F73BD646FC8A557796 /* Orbitron-VariableFont:wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-VariableFont:wght.ttf"; path = "../assets/fonts/Orbitron-VariableFont:wght.ttf"; sourceTree = "<group>"; };
+		95DB31295D00127BBC93B7A1 /* libPods-Zipforce-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Zipforce-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D26240C0F981FA2C5998061 /* Pods-ZipforceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZipforceTests.release.xcconfig"; path = "Target Support Files/Pods-ZipforceTests/Pods-ZipforceTests.release.xcconfig"; sourceTree = "<group>"; };
+		A9D965C37C9B49989FD891DE /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		B1581086147A2976F0922726 /* Pods-Zipforce-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zipforce-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Zipforce-tvOSTests/Pods-Zipforce-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		B6CA31B0E127431585CE3975 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		BB0DB3CB91F2414785893E2D /* Orbitron-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-SemiBold.ttf"; path = "../assets/fonts/static/Orbitron-SemiBold.ttf"; sourceTree = "<group>"; };
+		BE93FFD1B8A1D970F8FE2B33 /* libPods-Zipforce-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Zipforce-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9CCF2C75C8459DDEB92418F /* Pods-Zipforce.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zipforce.release.xcconfig"; path = "Target Support Files/Pods-Zipforce/Pods-Zipforce.release.xcconfig"; sourceTree = "<group>"; };
+		DCAF1E752ABB4ECBA5A21902 /* Orbitron-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-ExtraBold.ttf"; path = "../assets/fonts/static/Orbitron-ExtraBold.ttf"; sourceTree = "<group>"; };
+		E07958EDB7804F21AD496B25 /* Orbitron-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-Bold.ttf"; path = "../assets/fonts/static/Orbitron-Bold.ttf"; sourceTree = "<group>"; };
+		E125DAF5E7154D3A90B4C39C /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-ionicons/fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		E557C57D0D17454484C40B11 /* Orbitron-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Orbitron-Medium.ttf"; path = "../assets/fonts/static/Orbitron-Medium.ttf"; sourceTree = "<group>"; };
+		E8236B9E9C3548C6BF21ED10 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		EB2D52AD35867809B993EDDE /* Pods-ZipforceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZipforceTests.debug.xcconfig"; path = "Target Support Files/Pods-ZipforceTests/Pods-ZipforceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		EE1430B9C4BABCE669537779 /* libPods-ZipforceTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZipforceTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE7DD7A11C70A16B0103EDE5 /* Pods-Zipforce-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zipforce-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Zipforce-tvOSTests/Pods-Zipforce-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F4FBAABC3DFC0F7651575F7E /* Pods-Zipforce-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zipforce-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Zipforce-tvOS/Pods-Zipforce-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		FDF687BA6C814CE7ACC4BC13 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AE09CF661BD264AB354D6C9 /* Pods_Zipforce.framework in Frameworks */,
+				DA074DD8878B9D8F09C98994 /* libPods-Zipforce.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,21 +120,66 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		10079C6B78C54DFB80B963D2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8AADE0F73BD646FC8A557796 /* Orbitron-VariableFont:wght.ttf */,
+				18EAA5CE1BB44B35A25DD5C7 /* Orbitron-Black.ttf */,
+				E07958EDB7804F21AD496B25 /* Orbitron-Bold.ttf */,
+				DCAF1E752ABB4ECBA5A21902 /* Orbitron-ExtraBold.ttf */,
+				E557C57D0D17454484C40B11 /* Orbitron-Medium.ttf */,
+				1E4906AE5FDD4B6FA5B8566A /* Orbitron-Regular.ttf */,
+				BB0DB3CB91F2414785893E2D /* Orbitron-SemiBold.ttf */,
+				E125DAF5E7154D3A90B4C39C /* Ionicons.ttf */,
+				5C5A5F28AE724432A26E9AD1 /* AntDesign.ttf */,
+				78A51F03BD174569A79D882B /* Entypo.ttf */,
+				81CDB063CC35486AAAAD43AB /* EvilIcons.ttf */,
+				361B86D56FBF4ECC9E1AE0E8 /* Feather.ttf */,
+				FDF687BA6C814CE7ACC4BC13 /* FontAwesome.ttf */,
+				46B4FF703BD8481389E0EFDD /* FontAwesome5_Brands.ttf */,
+				A9D965C37C9B49989FD891DE /* FontAwesome5_Regular.ttf */,
+				46604133AA9E417BBE716B80 /* FontAwesome5_Solid.ttf */,
+				265C47110BF440F2BDF50E32 /* Fontisto.ttf */,
+				041032704CF1433C8D1F89DD /* Foundation.ttf */,
+				56B91155958A48F4BB925B0E /* MaterialCommunityIcons.ttf */,
+				B6CA31B0E127431585CE3975 /* MaterialIcons.ttf */,
+				E8236B9E9C3548C6BF21ED10 /* Octicons.ttf */,
+				18C9CE8CC49141F9B3255405 /* SimpleLineIcons.ttf */,
+				5E8D6AA2404F4F9A9A242728 /* Zocial.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* Zipforce */ = {
 			isa = PBXGroup;
 			children = (
-				7C2752F623F6112B005E9250 /* LaunchScreen.xib */,
+				7CD753A92421A3A400895146 /* Zipforce.entitlements */,
+				7CD753A72421A16D00895146 /* BootSplash.storyboard */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				7C6B2D3B23EB87AB006E5AC0 /* Blank.swift */,
-				7C6B2D3A23EB87AB006E5AC0 /* Zipforce-Bridging-Header.h */,
-				7C1C40E9241FAC6C00CBA596 /* BootSplash.storyboard */,
+				7CD753A52421989100895146 /* empty.swift */,
+				7CD753A42421989100895146 /* Zipforce-Bridging-Header.h */,
 			);
 			name = Zipforce;
+			sourceTree = "<group>";
+		};
+		196023F1C53AB423C7FB1B61 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8A52D40FB603D14563A02CC4 /* Pods-Zipforce.debug.xcconfig */,
+				C9CCF2C75C8459DDEB92418F /* Pods-Zipforce.release.xcconfig */,
+				F4FBAABC3DFC0F7651575F7E /* Pods-Zipforce-tvOS.debug.xcconfig */,
+				81155E660F2F553F42E16BA7 /* Pods-Zipforce-tvOS.release.xcconfig */,
+				EE7DD7A11C70A16B0103EDE5 /* Pods-Zipforce-tvOSTests.debug.xcconfig */,
+				B1581086147A2976F0922726 /* Pods-Zipforce-tvOSTests.release.xcconfig */,
+				EB2D52AD35867809B993EDDE /* Pods-ZipforceTests.debug.xcconfig */,
+				9D26240C0F981FA2C5998061 /* Pods-ZipforceTests.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -104,7 +187,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				A29D9CB7D61E6F8780C3E2CA /* Pods_Zipforce.framework */,
+				5EC86044E648F29F8D3079A1 /* libPods-Zipforce.a */,
+				BE93FFD1B8A1D970F8FE2B33 /* libPods-Zipforce-tvOS.a */,
+				95DB31295D00127BBC93B7A1 /* libPods-Zipforce-tvOSTests.a */,
+				EE1430B9C4BABCE669537779 /* libPods-ZipforceTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -124,8 +210,8 @@
 				00E356EF1AD99517003FC87E /* ZipforceTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				A8CE70986556308FB1C0A5B3 /* Pods */,
-				D4DC4149E7B94472A2738B60 /* Resources */,
+				196023F1C53AB423C7FB1B61 /* Pods */,
+				10079C6B78C54DFB80B963D2 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -140,30 +226,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A8CE70986556308FB1C0A5B3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				16F68557CD010414D54A9288 /* Pods-Zipforce.debug.xcconfig */,
-				DB578C7ED629AC0044FB74E1 /* Pods-Zipforce.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		D4DC4149E7B94472A2738B60 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				4344383A9CBE46A7B8726981 /* Orbitron-VariableFont:wght.ttf */,
-				0183516FCB384E0A947C4652 /* Orbitron-Black.ttf */,
-				BB83F01C3C47454DBCB7C221 /* Orbitron-Bold.ttf */,
-				B125E4FB130543B19AA46A02 /* Orbitron-ExtraBold.ttf */,
-				415A51FC97BF4542B1C3A61F /* Orbitron-Medium.ttf */,
-				CE09883B703E44D28524E7E8 /* Orbitron-Regular.ttf */,
-				2388AF48020243A9A3BA949E /* Orbitron-SemiBold.ttf */,
-				42B3555CE78847B99267E4FE /* Ionicons.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -171,13 +233,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Zipforce" */;
 			buildPhases = (
-				8598419F1FA2F48BC949AC2E /* [CP] Check Pods Manifest.lock */,
+				C7F339A51CE1ABE97A15E898 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				80E07AFDC1F07A3780235E13 /* [CP] Embed Pods Frameworks */,
+				5E6EA28118633E6552A5BDBD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -227,17 +289,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C2752F823F6112B005E9250 /* LaunchScreen.xib in Resources */,
-				7C1C40EA241FAC6C00CBA596 /* BootSplash.storyboard in Resources */,
+				7CD753A82421A16D00895146 /* BootSplash.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				C4AE9597741F41D78F4CD385 /* Orbitron-VariableFont:wght.ttf in Resources */,
-				FDA8C961B651480E90697D3A /* Orbitron-Black.ttf in Resources */,
-				88FB6B8EA5AF475BBD96E2A5 /* Orbitron-Bold.ttf in Resources */,
-				C0AD6D0A6F8141979860CA1B /* Orbitron-ExtraBold.ttf in Resources */,
-				FF0A47ACFEDE4FE4A4CC539E /* Orbitron-Medium.ttf in Resources */,
-				98BA45BAAECE48C8A663B1E0 /* Orbitron-Regular.ttf in Resources */,
-				4315A9E90AB040A1AB774B50 /* Orbitron-SemiBold.ttf in Resources */,
-				84D2E857055A490FB06AAF1C /* Ionicons.ttf in Resources */,
+				48F585445A5A48579CC99B2C /* Orbitron-VariableFont:wght.ttf in Resources */,
+				7780F821312245869DA446C8 /* Orbitron-Black.ttf in Resources */,
+				9252FAEDA78E4D4A9A567125 /* Orbitron-Bold.ttf in Resources */,
+				4C297495CDD1493795E6C802 /* Orbitron-ExtraBold.ttf in Resources */,
+				725FA1790C524777AB88DED0 /* Orbitron-Medium.ttf in Resources */,
+				F860432E7C43459992BEA56C /* Orbitron-Regular.ttf in Resources */,
+				16A7E5BB73FB49C8A6EA872B /* Orbitron-SemiBold.ttf in Resources */,
+				E9EEF37B9FF74D4FA1A88071 /* Ionicons.ttf in Resources */,
+				FE6ECB0E28064FB2AF0CF8DD /* AntDesign.ttf in Resources */,
+				F38EE386B219418E8D995236 /* Entypo.ttf in Resources */,
+				8B7E31B2DB764DB1989C2559 /* EvilIcons.ttf in Resources */,
+				791E1CDAB00C48F28FD21AF2 /* Feather.ttf in Resources */,
+				636E4F612EE54AE288666AAF /* FontAwesome.ttf in Resources */,
+				852CDBBF1CF84E8F96378F9D /* FontAwesome5_Brands.ttf in Resources */,
+				35C12B6E51CB4385B9912213 /* FontAwesome5_Regular.ttf in Resources */,
+				A8E9BA7D04324E75BF91CCDD /* FontAwesome5_Solid.ttf in Resources */,
+				476BE88901C644A7B682562A /* Fontisto.ttf in Resources */,
+				31A98E4DD6FC44128C99328C /* Foundation.ttf in Resources */,
+				518245FA578940AC9ACC38D1 /* MaterialCommunityIcons.ttf in Resources */,
+				AE4BF9B3230549A2A93E2B94 /* MaterialIcons.ttf in Resources */,
+				14B0C5B976BB4FEBB3E01372 /* Octicons.ttf in Resources */,
+				09AB413EA32E425BA3C6E6A9 /* SimpleLineIcons.ttf in Resources */,
+				D415088BB8784139B2FE5B3D /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,87 +334,55 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		80E07AFDC1F07A3780235E13 /* [CP] Embed Pods Frameworks */ = {
+		5E6EA28118633E6552A5BDBD /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Zipforce/Pods-Zipforce-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/DoubleConversion/DoubleConversion.framework",
-				"${BUILT_PRODUCTS_DIR}/FBReactNativeSpec/FBReactNativeSpec.framework",
-				"${BUILT_PRODUCTS_DIR}/Folly/folly.framework",
-				"${BUILT_PRODUCTS_DIR}/RCTTypeSafety/RCTTypeSafety.framework",
-				"${BUILT_PRODUCTS_DIR}/RNBootSplash/RNBootSplash.framework",
-				"${BUILT_PRODUCTS_DIR}/RNCMaskedView/RNCMaskedView.framework",
-				"${BUILT_PRODUCTS_DIR}/RNGestureHandler/RNGestureHandler.framework",
-				"${BUILT_PRODUCTS_DIR}/RNReanimated/RNReanimated.framework",
-				"${BUILT_PRODUCTS_DIR}/RNScreens/RNScreens.framework",
-				"${BUILT_PRODUCTS_DIR}/RNVectorIcons/RNVectorIcons.framework",
-				"${BUILT_PRODUCTS_DIR}/React-ART/ART.framework",
-				"${BUILT_PRODUCTS_DIR}/React-Core/React.framework",
-				"${BUILT_PRODUCTS_DIR}/React-CoreModules/CoreModules.framework",
-				"${BUILT_PRODUCTS_DIR}/React-RCTActionSheet/RCTActionSheet.framework",
-				"${BUILT_PRODUCTS_DIR}/React-RCTAnimation/RCTAnimation.framework",
-				"${BUILT_PRODUCTS_DIR}/React-RCTBlob/RCTBlob.framework",
-				"${BUILT_PRODUCTS_DIR}/React-RCTImage/RCTImage.framework",
-				"${BUILT_PRODUCTS_DIR}/React-RCTLinking/RCTLinking.framework",
-				"${BUILT_PRODUCTS_DIR}/React-RCTNetwork/RCTNetwork.framework",
-				"${BUILT_PRODUCTS_DIR}/React-RCTSettings/RCTSettings.framework",
-				"${BUILT_PRODUCTS_DIR}/React-RCTText/RCTText.framework",
-				"${BUILT_PRODUCTS_DIR}/React-RCTVibration/RCTVibration.framework",
-				"${BUILT_PRODUCTS_DIR}/React-cxxreact/cxxreact.framework",
-				"${BUILT_PRODUCTS_DIR}/React-jsi/jsi.framework",
-				"${BUILT_PRODUCTS_DIR}/React-jsiexecutor/jsireact.framework",
-				"${BUILT_PRODUCTS_DIR}/React-jsinspector/jsinspector.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactCommon/ReactCommon.framework",
-				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
-				"${BUILT_PRODUCTS_DIR}/glog/glog.framework",
-				"${BUILT_PRODUCTS_DIR}/react-native-ble-plx/react_native_ble_plx.framework",
-				"${BUILT_PRODUCTS_DIR}/react-native-ble-plx-swift/react_native_ble_plx_swift.framework",
-				"${BUILT_PRODUCTS_DIR}/react-native-safe-area-context/react_native_safe_area_context.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Zipforce/Pods-Zipforce-resources.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DoubleConversion.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBReactNativeSpec.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/folly.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTTypeSafety.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNBootSplash.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCMaskedView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNGestureHandler.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNReanimated.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNScreens.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNVectorIcons.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ART.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CoreModules.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTActionSheet.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTAnimation.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTBlob.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTLinking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTNetwork.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSettings.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTText.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTVibration.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/cxxreact.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/jsi.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/jsireact.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/jsinspector.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactCommon.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/glog.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_ble_plx.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_ble_plx_swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_safe_area_context.framework",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zipforce/Pods-Zipforce-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zipforce/Pods-Zipforce-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8598419F1FA2F48BC949AC2E /* [CP] Check Pods Manifest.lock */ = {
+		C7F339A51CE1ABE97A15E898 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -386,33 +430,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C6B2D3C23EB87AB006E5AC0 /* Blank.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				7CD753A62421989100895146 /* empty.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		7C2752F623F6112B005E9250 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7C2752F723F6112B005E9250 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16F68557CD010414D54A9288 /* Pods-Zipforce.debug.xcconfig */;
+			baseConfigurationReference = 8A52D40FB603D14563A02CC4 /* Pods-Zipforce.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 20;
+				CODE_SIGN_ENTITLEMENTS = Zipforce/Zipforce.entitlements;
+				CURRENT_PROJECT_VERSION = 21;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = K4Q2LD3M5R;
 				INFOPLIST_FILE = Zipforce/Info.plist;
@@ -426,18 +460,19 @@
 				PRODUCT_NAME = Zipforce;
 				SWIFT_OBJC_BRIDGING_HEADER = "Zipforce-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DB578C7ED629AC0044FB74E1 /* Pods-Zipforce.release.xcconfig */;
+			baseConfigurationReference = C9CCF2C75C8459DDEB92418F /* Pods-Zipforce.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 20;
+				CODE_SIGN_ENTITLEMENTS = Zipforce/Zipforce.entitlements;
+				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = K4Q2LD3M5R;
 				INFOPLIST_FILE = Zipforce/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -449,7 +484,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zipforceab.zipforce;
 				PRODUCT_NAME = Zipforce;
 				SWIFT_OBJC_BRIDGING_HEADER = "Zipforce-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

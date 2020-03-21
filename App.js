@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import Icon from 'react-native-ionicons'
 import RNBootSplash from "react-native-bootsplash";
 import thunk from 'redux-thunk';
 import NavigationService from './NavigationService';
 
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
+
 import rootReducer from './reducers'
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
-
-import Icon from 'react-native-ionicons'
 
 import HomeScreen from './screens/home'
 import ScanScreen from './screens/scan'
@@ -20,11 +20,9 @@ import SettingScreen from './screens/settings'
 import LoginScreen from './screens/login'
 import RegisterScreen from './screens/register'
 import StatisticsScreen from './screens/statistics'
-import AuthScreen from './screens/auth'
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
-  Auth: AuthScreen,
   Scan: ScanScreen,
 },{initialRouteName: 'Scan'});
 

@@ -11,8 +11,8 @@ class StatisticsScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.sendToDevice('T')
-    this.props.sendToDevice('t')
+    // this.props.sendToDevice('T')
+    // this.props.sendToDevice('t')
   }
 
   static navigationOptions = {

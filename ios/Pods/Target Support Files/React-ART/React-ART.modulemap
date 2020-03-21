@@ -1,6 +1,0 @@
-framework module ART {
-  umbrella header "React-ART-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -1,4 +1,4 @@
-framework module react_native_ble_plx_swift {
+module react_native_ble_plx_swift {
   umbrella header "react-native-ble-plx-swift-umbrella.h"
 
   export *

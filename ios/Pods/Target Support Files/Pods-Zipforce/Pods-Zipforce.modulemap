@@ -1,4 +1,4 @@
-framework module Pods_Zipforce {
+module Pods_Zipforce {
   umbrella header "Pods-Zipforce-umbrella.h"
 
   export *

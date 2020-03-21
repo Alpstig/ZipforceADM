@@ -34,6 +34,48 @@ class SettingScreen extends Component {
     }
 
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    const np = nextProps.bluetooth.value
+    const cp = this.props.bluetooth.value
+    if(np.r !== cp.S){
+      return true
+    }
+    if(np.p !== cp.p){
+      return true
+    }
+    if(np.O !== cp.O){
+      return true
+    }
+    if(np.J !== cp.J){
+      return true
+    }
+    if(np.F !== cp.F){
+      return true
+    }
+    if(np.N !== cp.N){
+      return true
+    }
+    if(np.x !== cp.x){
+      return true
+    }
+    if(np.q !== cp.q){
+      return true
+    }
+    if(np.K !== cp.K){
+      return true
+    }
+    if(np.l !== cp.l){
+      return true
+    }
+    if(np.L !== cp.L){
+      return true
+    }
+
+    if(nextProps.bluetooth.isConnected !== this.props.bluetooth.isConnected){
+      return true
+    }
+    return false;
+  }
 
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
@@ -168,7 +210,7 @@ class SettingScreen extends Component {
         </ScrollView>
         <RNPickerSelect
         disabled={!isConnected}
-          onValueChange={(value) => this.props.sendToDevice(`CF${(value)}`)}
+          onValueChange={(value) => this.props.sendToDevice(`CF${(value)}`)} 
           // value={F}
           items={[
             { label: '0', value: '0' },

@@ -11,8 +11,7 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
-
-#import "RNBootSplash.h" // <- add the header import
+#import "RNBootSplash.h"
 
 @implementation AppDelegate
 
