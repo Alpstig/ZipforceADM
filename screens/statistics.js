@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { StyleSheet, SafeAreaView, Text, View, Image, Linking } from 'react-native'
+
 import { ListItem } from 'react-native-elements'
 import { sendToDevice } from '../actions'
 
@@ -11,8 +12,8 @@ class StatisticsScreen extends Component {
   }
 
   componentDidMount() {
-    // this.props.sendToDevice('T')
-    // this.props.sendToDevice('t')
+    this.props.sendToDevice('T')
+    this.props.sendToDevice('t')
   }
 
   static navigationOptions = {

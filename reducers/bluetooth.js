@@ -53,7 +53,7 @@ const initialState = {
   characteristics: []
 }
 
-initialState.manager.setLogLevel(LogLevel.Verbose)
+initialState.manager.setLogLevel(LogLevel.None)
 
 const bluetooth = (state = initialState, action) => {
   switch (action.type) {

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { StyleSheet, SafeAreaView, Text, View, Image, ScrollView, Modal, TouchableHighlight, Button, TextInput } from 'react-native'
+import { StyleSheet, SafeAreaView, Text, View, Image, ScrollView, Modal, TouchableOpacity } from 'react-native'
 import { ListItem } from 'react-native-elements'
 import RNPickerSelect from 'react-native-picker-select';
+import SmoothPinCodeInput from 'react-native-smooth-pincode-input'
 import AuthButtons from '../components/authButtons'
 import { sendToDevice } from '../actions'
 import firebase from '../utils/firebase'
@@ -32,7 +33,7 @@ class SettingScreen extends Component {
         disabled: false
       }
     }
-
+    this.pinInput = React.createRef();
   }
   shouldComponentUpdate(nextProps, nextState) {
     const np = nextProps.bluetooth.value
@@ -76,6 +77,12 @@ class SettingScreen extends Component {
     }
     return false;
   }
+  _checkCode = (code) => {
+    this.setModalVisible(false)
+    this.props.sendToDevice(`CP${code}`)
+    // this.props.sendToDevice(`X${code}`)
+    // this.checkPin = true
+  }
 
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
@@ -105,10 +112,44 @@ class SettingScreen extends Component {
 
     return (
       <SafeAreaView style={styles.container}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={this.state.modalVisible}
+        >
+          <View style={styles.modal}>
+            <View style={styles.modalContainer}>
+              <View style={styles.modalHeader}>
+                <Text style={styles.title}>Enter new PIN</Text>
+                <View style={styles.divider}></View>
+              </View>
+              <View style={styles.modalBody}>
+                <SmoothPinCodeInput
+                  ref={this.pinInput}
+                  value={this.state.newPin}
+                  autoFocus={true}
+                  onTextChange={newPin => this.setState({ newPin })}
+                  onFulfill={this._checkCode}
+                />
+              </View>
+              <View style={styles.modalFooter}>
+                <View style={styles.divider}></View>
+                <View style={{ flexDirection: "row-reverse", margin: 10 }}>
+                  <TouchableOpacity style={{ ...styles.actions, backgroundColor: "#db2828" }}
+                    onPress={() => {
+                      this.setModalVisible(!this.state.modalVisible)
+                    }}>
+                    <Text style={styles.actionText}>cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </View>
+        </Modal>
         <View style={{ alignItems: 'center', paddingBottom: 10 }}>
           <Image source={require('../assets/logo.png')} style={{ width: 265, height: 60 }} />
         </View>
-        <Modal
+        {/* <Modal
           onShow={()=> this.textInput.current.focus()}
           transparent={true}
           visible={this.state.modalVisible}>
@@ -139,7 +180,7 @@ class SettingScreen extends Component {
               />
             </View>
           </View>
-        </Modal>
+        </Modal> */}
         <ScrollView style={styles.scrollView}>
           <AuthButtons
             currentUser={user}
@@ -259,17 +300,36 @@ const styles = StyleSheet.create({
   modalContainer: {
     backgroundColor: "#f9fafb",
     width: "80%",
+    borderRadius: 5
+  }, modalHeader: {
+
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 20,
+    padding: 15,
+    color: "#000"
+  },
+  divider: {
+    width: "100%",
+    height: 1,
+    backgroundColor: "lightgray"
+  }, modalBody: {
+    backgroundColor: "#fff",
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    alignItems: "center"
+  },
+  modalFooter: {
+  },
+  actions: {
     borderRadius: 5,
-    padding: 20
-  }, TextInputStyle: {
-    textAlign: 'center',
-    fontSize: 50,
-    color: '#364F6B',
-    height: 80,
-    borderRadius: 10,
-    borderWidth: 5,
-    borderColor: '#FC5185',
-    marginBottom: 10
+    marginHorizontal: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20
+  },
+  actionText: {
+    color: "#fff"
   }
 })
 const mapStateToProps = state => ({

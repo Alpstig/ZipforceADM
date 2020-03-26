@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AnimatedGaugeProgress, GaugeProgress } from 'react-native-simple-gauge'
-import { View, Text, Dimensions, StyleSheet, Image, SafeAreaView, Button } from 'react-native'
+import { View, Text, Dimensions, StyleSheet, Image, SafeAreaView, StatusBar } from 'react-native'
 import ProgressBar from '../components/progressBar'
 import moment from 'moment'
 
@@ -40,7 +40,6 @@ class HomeScreen extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     const np = nextProps.bluetooth.value
     const cp = this.props.bluetooth.value
-    console.log(nextProps.bluetooth.isConnected)
     if(np.S !== cp.S){
       return true
     }
@@ -108,6 +107,7 @@ class HomeScreen extends Component {
 
     return (
       <SafeAreaView style={styles.container}>
+        <StatusBar hidden />
         <View style={{ alignItems: 'center', paddingBottom: 10 }}>
           <Image source={require('../assets/logo.png')} style={{ width: 265, height: 60 }} />
         </View>
@@ -145,7 +145,7 @@ class HomeScreen extends Component {
             })}
           </View>
         </View>
-        <View style={{ alignItems: 'center', margin: 30 }}>
+        <View style={{ alignItems: 'center', margin: 10 }}>
           <View style={{ width: size }}>
             <ProgressBar
               height={20}
@@ -164,7 +164,7 @@ class HomeScreen extends Component {
           </View>
         </View>
 
-        <View>
+        <View style={{alignContent:"center"}}>
           <View style={styles.row}>
             <View>
               <Text style={[styles.coll, styles.tableKey]}>POWER</Text>
@@ -216,7 +216,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#F5F5F5',
     padding: 50,
     margin: 50
   },
@@ -225,7 +224,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     alignItems: 'center',
   },
-  row: { flexDirection: 'row', paddingTop: 15 },
+  row: { flexDirection: 'row', paddingTop: 10 },
   coll: { width: 200 },
   collValue: {width: 100 },
   textView: {
