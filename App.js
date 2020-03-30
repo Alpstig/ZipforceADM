@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { createAppContainer, View, StatusBar } from 'react-navigation';
+import { StatusBar } from 'react-native';
+import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Icon from 'react-native-ionicons'
@@ -70,6 +71,7 @@ const Navigation = createAppContainer(
 
 export default class App extends Component {
   componentDidMount(){
+    StatusBar.setHidden(true);
     RNBootSplash.hide({ duration: 2500 });
   }
   render() {

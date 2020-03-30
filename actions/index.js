@@ -136,7 +136,7 @@ export const scanForDevice = () => (dispatch, getState) => {
     manager.startDeviceScan(null, null, (error, device) => {
       if (device) {
         if (device.name) {
-          if (getState().bluetooth.deviceNames.indexOf(device.name) == -1) {
+          if (getState().bluetooth.deviceNames.indexOf(device.name) == -1 && device.name.startsWith('Zipforce')) {
             dispatch(foundDevice(device))
           }
         }

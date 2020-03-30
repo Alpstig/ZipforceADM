@@ -4,6 +4,7 @@ import { AnimatedGaugeProgress, GaugeProgress } from 'react-native-simple-gauge'
 import { View, Text, Dimensions, StyleSheet, Image, SafeAreaView, StatusBar } from 'react-native'
 import ProgressBar from '../components/progressBar'
 import moment from 'moment'
+import KeepAwake from 'react-native-keep-awake';
 
 import { sendToDevice } from '../actions'
 
@@ -73,6 +74,7 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
+    KeepAwake.activate();
     // const { navigation } = this.props;
     // this.focusListener = navigation.addListener('didFocus', () => {
     //   const { isConnected, isScanning} = this.props.bluetooth;
@@ -107,7 +109,6 @@ class HomeScreen extends Component {
 
     return (
       <SafeAreaView style={styles.container}>
-        <StatusBar hidden />
         <View style={{ alignItems: 'center', paddingBottom: 10 }}>
           <Image source={require('../assets/logo.png')} style={{ width: 265, height: 60 }} />
         </View>

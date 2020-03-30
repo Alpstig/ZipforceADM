@@ -55,6 +55,11 @@ class ScanScreen extends Component {
         } else {
           this.setState({ code: '' })
           this.setModalVisible(false)
+          this.props.sendToDevice(`M`)
+          this.props.sendToDevice(`S`)
+          this.props.sendToDevice(`T`)
+          this.props.sendToDevice(`t`)
+
           this.props.navigation.navigate('Home')
         }
         this.props.setValue('X', null)
