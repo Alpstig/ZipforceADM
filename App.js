@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import Icon from 'react-native-ionicons'
 import RNBootSplash from "react-native-bootsplash";
 import thunk from 'redux-thunk';
+// import ReduxAsyncQueue from 'redux-async-queue'
 import NavigationService from './NavigationService';
 
 import { Provider } from 'react-redux'
@@ -13,7 +14,9 @@ import { createStore, applyMiddleware } from 'redux'
 
 import rootReducer from './reducers'
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const middleware = [thunk] // ReduxAsyncQueue
+
+const store = createStore(rootReducer, applyMiddleware(...middleware))
 
 import HomeScreen from './screens/home'
 import ScanScreen from './screens/scan'

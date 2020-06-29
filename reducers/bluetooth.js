@@ -13,6 +13,7 @@ import {
 
 const initialState = {
   manager: new BleManager(),
+  timer: 500,
   pending: false,
   error: false,
   isScanning: false,
@@ -32,6 +33,7 @@ const initialState = {
     n: 0,
     R: 0,
     S: 0,
+    s: 0,
     z: 0,
     F: 0,
     J: 0,

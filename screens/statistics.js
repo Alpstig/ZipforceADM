@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { StyleSheet, SafeAreaView, Text, View, Image, Linking } from 'react-native'
-
-import { ListItem } from 'react-native-elements'
+import { ListItem, FlatList, Button } from 'react-native-elements'
 import { sendToDevice } from '../actions'
 
 
@@ -10,7 +9,35 @@ class StatisticsScreen extends Component {
   constructor(props) {
     super(props)
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    const np = nextProps.bluetooth.value
+    const cp = this.props.bluetooth.value
 
+    //N, x, q, K, l, L
+    if(np.N !== cp.N){
+      return true
+    }
+    if(np.x !== cp.x){
+      return true
+    }
+    if(np.q !== cp.q){
+      return true
+    }
+    if(np.K !== cp.K){
+      return true
+    }
+    if(np.l !== cp.l){
+      return true
+    }
+    if(np.L !== cp.L){
+      return true
+    }
+
+    if(nextProps.bluetooth.isConnected !== this.props.bluetooth.isConnected){
+      return true
+    }
+    return false;
+  }
   componentDidMount() {
     this.props.sendToDevice('T')
     this.props.sendToDevice('t')
@@ -21,13 +48,21 @@ class StatisticsScreen extends Component {
   }
 
   render() {
+    let { isConnected } = this.props.bluetooth
     let { N, x, q, K, l, L} = this.props.bluetooth.value
-
         return (
       <SafeAreaView style={styles.container}>
         <View style={{ alignItems: 'center', paddingBottom: 10 }}>
           <Image source={require('../assets/logo.png')} style={{ width: 265, height: 60 }} />
         </View>
+        <Button
+            title={'Update'}
+            disabled={!isConnected}
+            onPress={() => {
+              this.props.sendToDevice('T')
+              this.props.sendToDevice('t')
+            }}
+          />
         <ListItem
           key={8}
           title={'Charges made'}

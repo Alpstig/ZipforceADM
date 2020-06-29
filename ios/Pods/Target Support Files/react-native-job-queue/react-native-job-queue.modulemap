@@ -1,0 +1,6 @@
+module react_native_job_queue {
+  umbrella header "react-native-job-queue-umbrella.h"
+
+  export *
+  module * { export * }
+}

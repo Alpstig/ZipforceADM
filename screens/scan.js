@@ -3,11 +3,12 @@ import Icon from 'react-native-ionicons'
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import { View, Text, StyleSheet, Image, SafeAreaView, Modal, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, SafeAreaView, Modal, Dimensions, TouchableOpacity } from 'react-native';
 import { ListItem, FlatList, Button } from 'react-native-elements'
 
 import { connectDevice, startScanForDevice, stopScaning, sendToDevice, setValue, disconnectDevice } from '../actions'
 
+const { width, height } = Dimensions.get('window');
 class ScanScreen extends Component {
   constructor(props) {
     super(props)
@@ -79,7 +80,7 @@ class ScanScreen extends Component {
   }
 
   render() {
-    const { deviceList } = this.props.bluetooth
+    const { deviceList, isScanning } = this.props.bluetooth
     return (
       <SafeAreaView style={styles.container}>
         <Modal
@@ -122,6 +123,7 @@ class ScanScreen extends Component {
         </View>
         <View>
           <Button
+          disabled={isScanning}
             title={'Scan'}
             onPress={() => this.props.scanForDevice()}
           />
@@ -200,15 +202,17 @@ const mapStateToProps = state => ({
   bluetooth: state.bluetooth
 })
 
-const mapDispatchToProps = dispatch => ({
-  disconnectDevice: ()=> dispatch(disconnectDevice()),
-  setValue: (key, value) => dispatch(setValue(key, value)),
-  stopScaning: () => dispatch(stopScaning()),
-  sendToDevice: (data) => dispatch(sendToDevice(data)),
-  scanForDevice: () => dispatch(startScanForDevice()),
-  connectDevice: (device) => {
-    dispatch(connectDevice(device))
+const mapDispatchToProps = dispatch => {
+  return {
+    disconnectDevice: ()=> dispatch(disconnectDevice()),
+    setValue: (key, value) => dispatch(setValue(key, value)),
+    stopScaning: () => dispatch(stopScaning()),
+    sendToDevice: (data) => dispatch(sendToDevice(data)),
+    scanForDevice: () => dispatch(startScanForDevice()),
+    connectDevice: (device) => {
+      dispatch(connectDevice(device))
+    }
   }
-});
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScanScreen)

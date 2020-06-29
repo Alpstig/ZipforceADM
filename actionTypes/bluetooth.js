@@ -2,6 +2,7 @@ export const CONNECT_PENDING = 'CONNECT_PENDING';
 export const CONNECT_SUCCESS = 'CONNECT_SUCCESS';
 export const CONNECT_FAILURE = 'CONNECT_FAILURE';
 
+export const SCANING = 'SCANING';
 export const START_SCAN = 'START_SCAN';
 export const STOP_SCAN = 'STOP_SCAN';
 export const FOUND_SCAN = 'FOUND_SCAN';

@@ -8,7 +8,7 @@ import KeepAwake from 'react-native-keep-awake';
 
 import { sendToDevice } from '../actions'
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 const size = 250; //width - 150;
 const thik = 15;
 const cropDegree = 90;
@@ -41,28 +41,28 @@ class HomeScreen extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     const np = nextProps.bluetooth.value
     const cp = this.props.bluetooth.value
-    if(np.S !== cp.S){
+    if (np.S !== cp.S) {
       return true
     }
-    if(np.r !== cp.r){
+    if (np.r !== cp.r) {
       return true
     }
-    if(np.k !== cp.k){
+    if (np.k !== cp.k) {
       return true
     }
-    if(np.m !== cp.m){
+    if (np.m !== cp.m) {
       return true
     }
-    if(np.n !== cp.n){
+    if (np.n !== cp.n) {
       return true
     }
-    if(np.R !== cp.R){
+    if (np.R !== cp.R) {
       return true
     }
-    if(np.z !== cp.z){
+    if (np.z !== cp.z) {
       return true
     }
-    if(nextProps.bluetooth.isConnected !== this.props.bluetooth.isConnected){
+    if (nextProps.bluetooth.isConnected !== this.props.bluetooth.isConnected) {
       return true
     }
     return false;
@@ -75,23 +75,7 @@ class HomeScreen extends Component {
 
   componentDidMount() {
     KeepAwake.activate();
-    // const { navigation } = this.props;
-    // this.focusListener = navigation.addListener('didFocus', () => {
-    //   const { isConnected, isScanning} = this.props.bluetooth;
-    //   if (!isConnected && !isScanning) {
-    //     // this.props.navigation.navigate('Scan')
-    //   }
-    // });
-    // // this.willBlurListener = navigation.addListener('didBlur', () => {
-    // //   console.log('HOME stopScaning')
-    // //   this.props.stopScaning()
-    // // });
   }
-
-  // componentWillUnmount() {
-  //   console.log('componentWillUnmount')
-  //   this.focusListener.remove();
-  // }
 
   static navigationOptions = {
     headerShown: false,
@@ -105,18 +89,19 @@ class HomeScreen extends Component {
     let speed = (r == '0' ? S : Math.round(S * MPHConst))
     let KMH_MPH = (r == '0' ? 'km/h' : 'mph')
 
-    let batteryProgress = parseFloat(m/100);
+    let batteryProgress = parseFloat(m / 100);
 
     return (
       <SafeAreaView style={styles.container}>
-        <View style={{ alignItems: 'center', paddingBottom: 10 }}>
+        {height < 770 ? null : (<View style={{ alignItems: 'center', paddingBottom: 10 }}>
           <Image source={require('../assets/logo.png')} style={{ width: 265, height: 60 }} />
-        </View>
+        </View>)}
+
         <View style={styles.speedGuade}>
           <GaugeProgress
             size={size} //size
             width={thik}
-            fill={parseInt(speed*2)}
+            fill={parseInt(speed * 2)}
             cropDegree={cropDegree}
             strokeCap='circle'
             tintColor='#FC5185'
@@ -130,7 +115,7 @@ class HomeScreen extends Component {
             </View>
 
           </GaugeProgress>
-          <View style={{position:'absolute', marginTop: 140}}> 
+          <View style={{ position: 'absolute', marginTop: 140 }}>
             {smalldata.map((data, index) => {
               return (
                 <View key={index} style={[minuteHandStyles(), {
@@ -165,13 +150,13 @@ class HomeScreen extends Component {
           </View>
         </View>
 
-        <View style={{alignContent:"center"}}>
+        <View style={{ flex: 1, alignItems: 'center' }}>
           <View style={styles.row}>
             <View>
               <Text style={[styles.coll, styles.tableKey]}>POWER</Text>
             </View>
             <View>
-          <Text style={[styles.collValue, styles.tableValue]}>{R}</Text>
+              <Text style={[styles.collValue, styles.tableValue]}>{R}</Text>
             </View>
           </View>
           <View style={styles.row}>
@@ -187,7 +172,7 @@ class HomeScreen extends Component {
               <Text style={[styles.coll, styles.tableKey]}>CAD</Text>
             </View>
             <View>
-          <Text style={[styles.collValue, styles.tableValue]}>{n}</Text>
+              <Text style={[styles.collValue, styles.tableValue]}>{n}</Text>
             </View>
           </View>
           <View style={styles.row}>
@@ -218,16 +203,16 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     padding: 50,
-    margin: 50
+    margin: 10
   },
   speedGuade: {
-    position:'relative',
+    position: 'relative',
     paddingTop: 20,
     alignItems: 'center',
   },
   row: { flexDirection: 'row', paddingTop: 10 },
   coll: { width: 200 },
-  collValue: {width: 100 },
+  collValue: { width: 120 },
   textView: {
     position: 'absolute',
     paddingTop: 50,
