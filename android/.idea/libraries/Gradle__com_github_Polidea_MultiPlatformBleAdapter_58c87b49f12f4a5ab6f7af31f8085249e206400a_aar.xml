@@ -1,11 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.Polidea:MultiPlatformBleAdapter:58c87b49f12f4a5ab6f7af31f8085249e206400a@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f44541de93bbffa9deec1895b31a8841/jetified-MultiPlatformBleAdapter-58c87b49f12f4a5ab6f7af31f8085249e206400a/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/97b28fadf490109fc1fcef3be8eb5a2d/jetified-MultiPlatformBleAdapter-58c87b49f12f4a5ab6f7af31f8085249e206400a/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f44541de93bbffa9deec1895b31a8841/jetified-MultiPlatformBleAdapter-58c87b49f12f4a5ab6f7af31f8085249e206400a/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f44541de93bbffa9deec1895b31a8841/jetified-MultiPlatformBleAdapter-58c87b49f12f4a5ab6f7af31f8085249e206400a/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/97b28fadf490109fc1fcef3be8eb5a2d/jetified-MultiPlatformBleAdapter-58c87b49f12f4a5ab6f7af31f8085249e206400a/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/97b28fadf490109fc1fcef3be8eb5a2d/jetified-MultiPlatformBleAdapter-58c87b49f12f4a5ab6f7af31f8085249e206400a/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/97b28fadf490109fc1fcef3be8eb5a2d/jetified-MultiPlatformBleAdapter-58c87b49f12f4a5ab6f7af31f8085249e206400a/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
