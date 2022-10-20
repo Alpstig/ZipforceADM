@@ -25,7 +25,7 @@
     "react-native-ionicons": "^4.6.4",
     "react-native-job-queue": "^0.1.0",
     "react-native-keep-awake": "^4.0.0",
-    "react-native-reanimated": "^1.9.0",
+    "react-native-reanimated": "^2.10.0",
     "react-native-safe-area-context": "^2.0.0",
     "react-native-screens": "^2.8.0",
     "react-native-simple-gauge": "^0.3.0",
